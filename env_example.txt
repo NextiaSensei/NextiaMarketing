@@ -1,0 +1,41 @@
+# ==========================================
+# CONFIGURACIÓN DE NEXTIA TOKEN AUTOMATION
+# ==========================================
+# IMPORTANTE: Este archivo contiene credenciales
+# NUNCA lo subas a GitHub. Úsalo SOLO localmente
+
+# ========== TWITTER/X API ==========
+# Obtén estos valores en: https://developer.twitter.com/en/portal/dashboard
+
+# Tu API Key (Bearer Token)
+TWITTER_API_KEY=tu_api_key_aqui
+
+# Tu API Secret
+TWITTER_API_SECRET=tu_api_secret_aqui
+
+# Tu Access Token (obtén con OAuth 2.0)
+TWITTER_ACCESS_TOKEN=tu_access_token_aqui
+
+# Tu Access Token Secret
+TWITTER_ACCESS_SECRET=tu_access_secret_aqui
+
+# ========== TELEGRAM BOT ==========
+# Obtén estos valores en: https://t.me/BotFather
+
+# Token del bot (ej: 123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11)
+TELEGRAM_BOT_TOKEN=tu_bot_token_aqui
+
+# ID del chat/canal donde enviar mensajes
+# Obtén con: https://t.me/userinfobot
+TELEGRAM_CHAT_ID=tu_chat_id_aqui
+
+# ========== FORMSPREE (Para formularios) ==========
+# Obtén en: https://formspree.io
+FORMSPREE_FORM_ID=f/xxxxxxxx
+
+# ========== OPCIONAL: EMAIL NOTIFICATIONS ==========
+SMTP_EMAIL=tu_email@gmail.com
+SMTP_PASSWORD=tu_contraseña_app_aqui
+
+# ========== BASE DE DATOS (Próximo) ==========
+DATABASE_URL=postgresql://user:password@localhost/nextia_db
