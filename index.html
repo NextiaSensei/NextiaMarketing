@@ -1,842 +1,310 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nextia Token - Presale | DeFi Ecosystem con Utilidad Real</title>
-    <meta name="description" content="Nextia Token: Ecosystem DeFi completo con 20% APY staking, smart contracts auditados y utilidad real. Únete a la presale hoy.">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #667eea;
-            --primary-dark: #764ba2;
-            --accent: #ff006e;
-            --text-light: #ffffff;
-            --text-dark: #0f0f1e;
-            --bg-dark: #0f0f1e;
-            --bg-card: #1a1a2e;
-            --border: rgba(255, 255, 255, 0.1);
-            --success: #4caf50;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a2e 100%);
-            color: var(--text-light);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Navbar */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(15, 15, 30, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
-            padding: 15px 40px;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8em;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 0.95em;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-        }
-
-        .nav-links a:hover {
-            opacity: 1;
-        }
-
-        .btn-presale-nav {
-            background: var(--accent);
-            color: white;
-            padding: 10px 25px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .btn-presale-nav:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(255, 0, 110, 0.3);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding-top: 150px;
-            padding-bottom: 100px;
-            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a2e 50%, rgba(102, 126, 234, 0.1) 100%);
-            text-align: center;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(102, 126, 234, 0.2);
-            border: 1px solid var(--primary);
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-
-        .hero h1 {
-            font-size: 3.5em;
-            font-weight: 800;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 50%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.1;
-        }
-
-        .hero p {
-            font-size: 1.3em;
-            opacity: 0.9;
-            margin-bottom: 40px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 60px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            padding: 16px 50px;
-            border: none;
-            border-radius: 30px;
-            font-size: 1.1em;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--primary);
-            padding: 16px 50px;
-            border: 2px solid var(--primary);
-            border-radius: 30px;
-            font-size: 1.1em;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        .hero-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
-        }
-
-        .stat-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            padding: 30px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .stat-number {
-            font-size: 2.5em;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            font-size: 0.95em;
-            opacity: 0.8;
-        }
-
-        /* Features Section */
-        .features {
-            max-width: 1200px;
-            margin: 100px auto;
-            padding: 0 40px;
-        }
-
-        .section-title {
-            font-size: 2.8em;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-bottom: 80px;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            padding: 40px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s;
-        }
-
-        .feature-card:hover {
-            border-color: var(--primary);
-            background: rgba(102, 126, 234, 0.1);
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-
-        .feature-card h3 {
-            font-size: 1.4em;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-
-        .feature-card p {
-            opacity: 0.85;
-            line-height: 1.8;
-        }
-
-        /* Tokenomics Section */
-        .tokenomics {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-            padding: 100px 40px;
-            margin: 100px 0;
-        }
-
-        .tokenomics-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .tokenomics-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .tokenomics-info h2 {
-            font-size: 2.5em;
-            margin-bottom: 30px;
-        }
-
-        .tokenomics-list {
-            list-style: none;
-            margin-bottom: 40px;
-        }
-
-        .tokenomics-list li {
-            padding: 15px 0;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .tokenomics-list strong {
-            color: var(--primary);
-        }
-
-        .tokenomics-value {
-            background: rgba(102, 126, 234, 0.2);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9em;
-        }
-
-        .presale-tiers {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 40px;
-            margin-top: 40px;
-        }
-
-        .tiers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .tier-card {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.1) 100%);
-            border: 2px solid var(--primary);
-            border-radius: 15px;
-            padding: 25px;
-            text-align: center;
-        }
-
-        .tier-card.active {
-            border-color: var(--accent);
-            background: linear-gradient(135deg, rgba(255, 0, 110, 0.2) 0%, rgba(102, 126, 234, 0.1) 100%);
-        }
-
-        .tier-name {
-            font-size: 1.3em;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .tier-price {
-            font-size: 1.8em;
-            color: var(--primary);
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-
-        .tier-discount {
-            color: var(--accent);
-            font-size: 0.9em;
-            font-weight: 600;
-        }
-
-        /* Roadmap Section */
-        .roadmap {
-            max-width: 1200px;
-            margin: 100px auto;
-            padding: 0 40px;
-        }
-
-        .timeline {
-            position: relative;
-            margin-top: 50px;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
-        }
-
-        .timeline-item {
-            margin-bottom: 50px;
-            position: relative;
-        }
-
-        .timeline-item:nth-child(odd) {
-            padding-right: 50%;
-            padding-left: 0;
-            text-align: right;
-        }
-
-        .timeline-item:nth-child(even) {
-            padding-left: 50%;
-            padding-right: 0;
-            text-align: left;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 20px;
-            background: var(--primary);
-            border: 3px solid var(--bg-dark);
-            border-radius: 50%;
-            top: 0;
-        }
-
-        .timeline-content {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            padding: 30px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .timeline-content h3 {
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        /* CTA Section */
-        .cta {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            padding: 80px 40px;
-            text-align: center;
-            margin: 100px 0 0 0;
-            border-radius: 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
-
-        .cta p {
-            font-size: 1.2em;
-            opacity: 0.95;
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn-primary {
-            background: var(--accent);
-            box-shadow: 0 10px 30px rgba(255, 0, 110, 0.3);
-        }
-
-        .cta .btn-primary:hover {
-            box-shadow: 0 15px 40px rgba(255, 0, 110, 0.5);
-        }
-
-        /* Footer */
-        footer {
-            background: rgba(255, 255, 255, 0.02);
-            border-top: 1px solid var(--border);
-            padding: 40px;
-            text-align: center;
-            opacity: 0.8;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 20px;
-        }
-
-        .social-links a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .social-links a:hover {
-            color: var(--accent);
-            transform: scale(1.1);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                gap: 20px;
-            }
-
-            .hero h1 {
-                font-size: 2.2em;
-            }
-
-            .hero p {
-                font-size: 1.1em;
-            }
-
-            .section-title {
-                font-size: 2em;
-            }
-
-            .tokenomics-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item:nth-child(odd),
-            .timeline-item:nth-child(even) {
-                padding-left: 60px;
-                padding-right: 0;
-                text-align: left;
-            }
-
-            .timeline-dot {
-                left: 20px;
-            }
-
-            .hero-cta {
-                flex-direction: column;
-            }
-
-            .btn-primary, .btn-secondary {
-                width: 100%;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-content {
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .feature-card {
-            animation: fadeInUp 0.8s ease-out;
-            animation-fill-mode: both;
-        }
-
-        .feature-card:nth-child(1) { animation-delay: 0.1s; }
-        .feature-card:nth-child(2) { animation-delay: 0.2s; }
-        .feature-card:nth-child(3) { animation-delay: 0.3s; }
-        .feature-card:nth-child(4) { animation-delay: 0.4s; }
-        .feature-card:nth-child(5) { animation-delay: 0.5s; }
-        .feature-card:nth-child(6) { animation-delay: 0.6s; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nextia Token (NXT) — Investigación & Desarrollo DeFi</title>
+
+<meta name="description" content="Nextia Token es un proyecto DeFi en fase temprana de investigación y desarrollo enfocado en contratos inteligentes, staking y gobernanza descentralizada.">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--primary:#667eea;
+--primary-dark:#764ba2;
+--accent:#ff006e;
+--text-light:#ffffff;
+--bg-dark:#0f0f1e;
+--bg-card:#1a1a2e;
+--border:rgba(255,255,255,.1)
+}
+body{
+font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+background:linear-gradient(135deg,var(--bg-dark),#1a1a2e);
+color:var(--text-light);
+line-height:1.6;
+overflow-x:hidden
+}
+
+/* NAV */
+nav{
+position:fixed;
+top:0;width:100%;
+background:rgba(15,15,30,.95);
+backdrop-filter:blur(10px);
+border-bottom:1px solid var(--border);
+z-index:1000;
+padding:15px 40px
+}
+.nav-container{
+max-width:1200px;
+margin:0 auto;
+display:flex;
+justify-content:space-between;
+align-items:center
+}
+.logo{
+font-size:1.8em;
+font-weight:700;
+background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent
+}
+.nav-links{display:flex;gap:30px;align-items:center}
+.nav-links a{
+color:#fff;
+text-decoration:none;
+opacity:.8;
+font-size:.95em
+}
+.nav-links a:hover{opacity:1}
+
+/* HERO */
+.hero{
+padding-top:150px;
+padding-bottom:100px;
+text-align:center;
+background:linear-gradient(135deg,var(--bg-dark),#1a1a2e 60%,rgba(102,126,234,.1))
+}
+.hero-content{
+max-width:900px;
+margin:0 auto;
+padding:0 40px
+}
+.hero-badge{
+display:inline-block;
+padding:10px 20px;
+border-radius:20px;
+background:rgba(102,126,234,.2);
+border:1px solid var(--primary);
+color:var(--primary);
+font-size:.85em;
+margin-bottom:20px
+}
+.hero h1{
+font-size:3.3em;
+font-weight:800;
+background:linear-gradient(135deg,var(--primary),var(--primary-dark),var(--accent));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+margin-bottom:20px
+}
+.hero p{
+font-size:1.25em;
+opacity:.9;
+max-width:700px;
+margin:0 auto 40px
+}
+
+/* STATS */
+.hero-stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:30px;
+margin-top:60px
+}
+.stat-card{
+background:rgba(255,255,255,.05);
+border:1px solid var(--border);
+padding:30px;
+border-radius:15px
+}
+.stat-number{
+font-size:2.4em;
+font-weight:800;
+color:var(--primary)
+}
+.stat-label{opacity:.8}
+
+/* SECTIONS */
+.section{
+max-width:1200px;
+margin:100px auto;
+padding:0 40px
+}
+.section-title{
+font-size:2.6em;
+font-weight:800;
+text-align:center;
+margin-bottom:60px
+}
+.card-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:40px
+}
+.card{
+background:rgba(255,255,255,.05);
+border:1px solid var(--border);
+padding:40px;
+border-radius:20px
+}
+.card h3{color:var(--primary);margin-bottom:15px}
+
+/* CTA */
+.cta{
+background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+padding:80px 40px;
+text-align:center
+}
+.cta h2{font-size:2.4em;margin-bottom:20px}
+.cta p{opacity:.95;font-size:1.15em}
+
+/* FOOTER */
+footer{
+border-top:1px solid var(--border);
+padding:40px;
+text-align:center;
+opacity:.8
+}
+.social-links{
+display:flex;
+justify-content:center;
+gap:30px;
+margin-bottom:20px
+}
+.social-links a{
+color:var(--primary);
+text-decoration:none;
+font-weight:600
+}
+</style>
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">🪙 NXT</div>
-            <div class="nav-links">
-                <a href="#features">Características</a>
-                <a href="#tokenomics">Tokenomics</a>
-                <a href="#roadmap">Roadmap</a>
-                <a href="https://t.me/nextiatokenoficial" target="_blank">Telegram</a>
-                <a href="#presale" class="btn-presale-nav">Unirse a Presale</a>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">🚀 PRESALE TIER 1 EN VIVO</div>
-            <h1>Nextia Token</h1>
-            <p>El ecosistema DeFi completo con utilidad real. 20% APY staking, smart contracts auditados, y governance descentralizado.</p>
-            
-            <div class="hero-cta">
-                <button class="btn-primary" onclick="document.getElementById('presale').scrollIntoView({behavior:'smooth'})">
-                    Unirse a Presale Ahora
-                </button>
-                <a href="https://t.me/nextiatokenoficial" target="_blank" class="btn-secondary">
-                    Canal de Telegram
-                </a>
-            </div>
+<nav>
+<div class="nav-container">
+<div class="logo">🪙 NXT</div>
+<div class="nav-links">
+<a href="#estado">Estado</a>
+<a href="#arquitectura">Arquitectura</a>
+<a href="#roadmap">Roadmap</a>
+<a href="https://t.me/nextiatokenoficial" target="_blank">Telegram</a>
+</div>
+</div>
+</nav>
 
-            <div class="hero-stats">
-                <div class="stat-card">
-                    <div class="stat-number">1M</div>
-                    <div class="stat-label">Supply Total NXT</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">20%</div>
-                    <div class="stat-label">APY Staking</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">16/16</div>
-                    <div class="stat-label">Tests Passing</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">4</div>
-                    <div class="stat-label">Smart Contracts</div>
-                </div>
-            </div>
-        </div>
-    </section>
+<section class="hero">
+<div class="hero-content">
+<div class="hero-badge">FASE 1 · Investigación & Desarrollo</div>
+<h1>Nextia Token (NXT)</h1>
+<p>
+Nextia es un proyecto experimental en etapa temprana enfocado en contratos inteligentes,
+staking y modelos de gobernanza descentralizada. Actualmente se encuentra en diseño,
+pruebas y validación técnica.
+</p>
 
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <h2 class="section-title">¿Por Qué Nextia?</h2>
-        
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🛡️</div>
-                <h3>Contratos Auditados</h3>
-                <p>4 smart contracts desarrollados con 16/16 tests passing. Código 100% transparente y verificable en GitHub. Seguridad máxima.</p>
-            </div>
+<div class="hero-stats">
+<div class="stat-card">
+<div class="stat-number">ERC-20</div>
+<div class="stat-label">Estándar Token</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">50+</div>
+<div class="stat-label">Tests Unitarios</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">Hardhat</div>
+<div class="stat-label">Framework</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">Sepolia</div>
+<div class="stat-label">Testnet</div>
+</div>
+</div>
+</div>
+</section>
 
-            <div class="feature-card">
-                <div class="feature-icon">💰</div>
-                <h3>20% APY Staking</h3>
-                <p>Gana rewards pasivos sin lock-up. Stake y unstake cuando quieras. Yields sostenibles respaldados por ingresos reales del ecosistema.</p>
-            </div>
+<section id="estado" class="section">
+<h2 class="section-title">Estado Actual del Proyecto</h2>
+<div class="card-grid">
+<div class="card">
+<h3>🧪 Investigación & Desarrollo</h3>
+<p>
+El proyecto se desarrolla de forma pública e incremental.
+No existe presale activa ni promesas de retorno financiero.
+</p>
+</div>
+<div class="card">
+<h3>🚫 Sin Presale Activa</h3>
+<p>
+Actualmente no existe ninguna venta pública o privada de tokens.
+Cualquier cambio será comunicado de forma transparente.
+</p>
+</div>
+<div class="card">
+<h3>📖 Documentación Abierta</h3>
+<p>
+Todo el avance técnico se documenta de manera pública en GitHub
+para revisión y auditoría comunitaria.
+</p>
+</div>
+</div>
+</section>
 
-            <div class="feature-card">
-                <div class="feature-icon">🗳️</div>
-                <h3>DAO Governance</h3>
-                <p>1 NXT = 1 voto. Los holders deciden el futuro del protocolo. Votación descentralizada en cambios importantes.</p>
-            </div>
+<section id="arquitectura" class="section">
+<h2 class="section-title">Arquitectura Técnica</h2>
+<div class="card-grid">
+<div class="card">
+<h3>Contratos Inteligentes</h3>
+<p>
+Desarrollo de contratos ERC-20, staking y gobernanza usando Solidity,
+con pruebas automatizadas.
+</p>
+</div>
+<div class="card">
+<h3>Staking (en diseño)</h3>
+<p>
+El sistema de staking está en fase experimental.
+Los parámetros económicos aún no están definidos ni activos.
+</p>
+</div>
+<div class="card">
+<h3>Gobernanza DAO</h3>
+<p>
+Investigación de modelos DAO para votación y toma de decisiones descentralizadas.
+</p>
+</div>
+</div>
+</section>
 
-            <div class="feature-card">
-                <div class="feature-icon">🤖</div>
-                <h3>Trading Bot Integrado</h3>
-                <p>Señales automáticas de trading en Telegram. 50+ usuarios activos. Machine learning para estrategias optimizadas.</p>
-            </div>
+<section id="roadmap" class="section">
+<h2 class="section-title">Roadmap Inicial</h2>
+<div class="card-grid">
+<div class="card">
+<h3>2025–2026</h3>
+<p>
+I+D, pruebas en testnet, documentación, revisión de seguridad
+y construcción de comunidad temprana.
+</p>
+</div>
+<div class="card">
+<h3>Fase Posterior</h3>
+<p>
+Cualquier lanzamiento, tokenomics finales o participación
+se anunciarán únicamente cuando exista base técnica sólida.
+</p>
+</div>
+</div>
+</section>
 
-            <div class="feature-card">
-                <div class="feature-icon">💼</div>
-                <h3>Ingresos Reales</h3>
-                <p>Nextia Marketing genera ingresos con clientes reales. No es vaporware. Yields provienen de revenue compartido con holders.</p>
-            </div>
+<section class="cta">
+<h2>Construyendo Antes de Prometer</h2>
+<p>
+Nextia prioriza bases técnicas, transparencia y aprendizaje.
+No hype. No promesas vacías.
+</p>
+</section>
 
-            <div class="feature-card">
-                <div class="feature-icon">📊</div>
-                <h3>DApp Live en Vercel</h3>
-                <p>Dashboard de staking ya deployado. Interfaz moderna y responsiva. Conecta tu wallet MetaMask y comienza hoy.</p>
-            </div>
-        </div>
-    </section>
+<footer>
+<div class="social-links">
+<a href="https://t.me/nextiatokenoficial" target="_blank">Telegram</a>
+<a href="https://github.com/NextiaSensei" target="_blank">GitHub</a>
+</div>
+<p>© 2026 Nextia Token — Investigación y desarrollo abierto</p>
+</footer>
 
-    <!-- Tokenomics Section -->
-    <section id="tokenomics" class="tokenomics">
-        <div class="tokenomics-container">
-            <div class="tokenomics-grid">
-                <div class="tokenomics-info">
-                    <h2>Tokenomics Sostenible</h2>
-                    <p style="margin-bottom: 30px; opacity: 0.9;">Distribución equitativa diseñada para crecimiento a largo plazo y estabilidad del protocolo.</p>
-                    
-                    <ul class="tokenomics-list">
-                        <li>
-                            <strong>Supply Total</strong>
-                            <span class="tokenomics-value">1,000,000 NXT</span>
-                        </li>
-                        <li>
-                            <strong>Decimales</strong>
-                            <span class="tokenomics-value">18</span>
-                        </li>
-                        <li>
-                            <strong>Blockchain</strong>
-                            <span class="tokenomics-value">Ethereum + L2s</span>
-                        </li>
-                        <li>
-                            <strong>Token Type</strong>
-                            <span class="tokenomics-value">ERC-20 Utility</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div>
-                    <div class="presale-tiers">
-                        <h3 style="margin-bottom: 20px;">Tiers de Presale</h3>
-                        <div class="tiers-grid">
-                            <div class="tier-card active">
-                                <div class="tier-name">Tier 1</div>
-                                <div class="tier-price">$0.005</div>
-                                <div class="tier-discount">-40% Descuento</div>
-                                <p style="font-size: 0.85em; margin-top: 10px; opacity: 0.8;">500 spots</p>
-                            </div>
-
-                            <div class="tier-card">
-                                <div class="tier-name">Tier 2</div>
-                                <div class="tier-price">$0.00667</div>
-                                <div class="tier-discount">-25% Descuento</div>
-                                <p style="font-size: 0.85em; margin-top: 10px; opacity: 0.8;">500 spots</p>
-                            </div>
-
-                            <div class="tier-card">
-                                <div class="tier-name">Tier 3</div>
-                                <div class="tier-price">$0.008</div>
-                                <div class="tier-discount">-20% Descuento</div>
-                                <p style="font-size: 0.85em; margin-top: 10px; opacity: 0.8;">500 spots</p>
-                            </div>
-
-                            <div class="tier-card">
-                                <div class="tier-name">Tier 4</div>
-                                <div class="tier-price">$0.01</div>
-                                <div class="tier-discount">Sin Descuento</div>
-                                <p style="font-size: 0.85em; margin-top: 10px; opacity: 0.8;">Hasta cap</p>
-                            </div>
-                        </div>
-
-                        <p style="margin-top: 25px; font-size: 0.9em; opacity: 0.8; text-align: center;">
-                            ✅ Presale abierta ahora | ⏳ Mainnet: Q1 2026 | 🎯 Meta: $50K+
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Roadmap Section -->
-    <section id="roadmap" class="roadmap">
-        <h2 class="section-title">Roadmap - Hitos</h2>
-        
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3>Nov 2025: Presale Phase 1</h3>
-                    <p>Tiers 1-4 en vivo. Captación de inversores iniciales. Meta: $40K-$100K. Whitelist abierta para early birds.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3>Dic 2025: Testnet Deploy</h3>
-                    <p>Deployment en Sepolia testnet. Community testing y bug bounties. Auditoría externa iniciada. Governance voting live.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3>Ene 2026: Auditoría Completa</h3>
-                    <p>Reporte final de auditoría. Fixes implementados. Revisión legal completada. Preparación para mainnet.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3>Feb 2026: Mainnet Launch</h3>
-                    <p>Deploy a Ethereum mainnet. DEX listings (Uniswap v3). Trading oficial inicia. Staking rewards activos.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3>Q2 2026: Expansión</h3>
-                    <p>Multi-chain deployment (Polygon, Arbitrum). CEX listings. Partnerships estratégicas. DAO governance expansion.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Presale CTA -->
-    <section id="presale" class="cta">
-        <h2>¿Listo para Participar?</h2>
-        <p>Únete a la presale de Nextia Token. Capital inicial para Q1 2026 mainnet launch.</p>
-        <a href="#presale-form" class="btn-primary">Obtener Acceso Anticipado</a>
-    </section>
-
-    <!-- Info Section -->
-    <section style="max-width: 1200px; margin: 80px auto; padding: 0 40px;">
-        <h2 class="section-title">¿Cómo Funciona la Presale?</h2>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; margin-top: 50px;">
-            <div style="background: rgba(255,255,255,0.05); padding: 40px; border-radius: 15px; border: 1px solid var(--border);">
-                <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 1.3em;">1️⃣ Registración</h3>
-                <p style="opacity: 0.85;">Ingresa tu email en el formulario de whitelist. Recibirás detalles de cómo participar en 24 horas.</p>
-            </div>
-
-            <div style="background: rgba(255,255,255,0.05); padding: 40px; border-radius: 15px; border: 1px solid var(--border);">
-                <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 1.3em;">2️⃣ Invierte</h3>
-                <p style="opacity: 0.85;">Conecta tu wallet. Transfiere USDT o ETH. Recibe NXT automáticamente con descuentos de presale.</p>
-            </div>
-
-            <div style="background: rgba(255,255,255,0.05); padding: 40px; border-radius: 15px; border: 1px solid var(--border);">
-                <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 1.3em;">3️⃣ Stake & Gana</h3>
-                <p style="opacity: 0.85;">Una vez en mainnet, puedes stakear tus NXT y ganar 20% APY en rewards automáticos.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Whitelist Form -->
-    <section style="max-width: 600px; margin: 80px auto; padding: 0 40px;">
-        <h2 class="section-title" id="presale-form">Obtén Acceso Anticipado</h2>
-        <form style="background: rgba(255,255,255,0.05); padding: 50px 40px; border-radius: 20px; border: 1px solid var(--border); margin-top: 40px;" action="https://formspree.io/f/REEMPLAZA_AQUI" method="POST">
-            <input type="email" name="email" placeholder="Tu email" required style="width: 100%; padding: 14px; margin-bottom: 15px; border: none; border-radius: 8px; font-size: 1em; background: rgba(255,255,255,0.95); color: #333;">
-            <input type="text" name="nombre" placeholder="Tu nombre (opcional)" style="width: 100%; padding: 14px; margin-bottom: 15px; border: none; border-radius: 8px; font-size: 1em; background: rgba(255,255,255,0.95); color: #333;">
-            <input type="text" name="telegram" placeholder="Tu usuario Telegram (opcional)" style="width: 100%; padding: 14px; margin-bottom: 25px; border: none; border-radius: 8px; font-size: 1em; background: rgba(255,255,255,0.95); color: #333;">
-            <button type="submit" class="btn-primary" style="width: 100%; padding: 16px; font-size: 1.1em;">✅ Unirse a Whitelist</button>
-            <p style="text-align: center; margin-top: 20px; opacity: 0.7; font-size: 0.9em;">No hacemos spam. Tus datos están seguros. 🔐</p>
-        </form>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="social-links">
-            <a href="https://t.me/nextiatokenoficial" target="_blank">Telegram</a>
-            <a href="https://discord.gg/PtWWkpfC" target="_blank">Discord</a>
-            <a href="https://x.com/Nextia33" target="_blank">Twitter</a>
-            <a href="https://github.com/NextiaSensei" target="_blank">GitHub</a>
-        </div>
-        <p>© 2025 Nextia Token. Construido en México 🇲🇽 con ❤️</p>
-        <p style="font-size: 0.85em; margin-top: 15px;">Smart Contracts: Ethereum | DApp: Vercel | Governance: DAO</p>
-    </footer>
-
-    <script>
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
-        // Form submission
-        document.querySelector('form').addEventListener('submit', function(e) {
-            // Let Formspree handle it
-            console.log('Form submitted');
-        });
-    </script>
 </body>
 </html>
+
