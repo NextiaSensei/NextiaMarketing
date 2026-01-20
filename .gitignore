@@ -1,25 +1,35 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-venv/
-env/
-ENV/
-.venv
-venv
-
-# Secrets
+# =========================
+# Environment
+# =========================
 .env
+.env.*
 .env.local
-.env.*.local
 
-# IDE
-.vscode/
+# =========================
+# Node / Frontend
+# =========================
+node_modules/
+dist/
+build/
+.next/
+.out/
+
+# =========================
+# Python
+# =========================
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# IDE / OS
+# =========================
 .idea/
-*.swp
-
-# OS
+.vscode/
 .DS_Store
-Thumbs.db
