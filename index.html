@@ -497,20 +497,58 @@ Invertir Ahora 🚀
 <h2 class="text-4xl font-headline font-bold mb-4">Únete a la Whitelist</h2>
 <p class="text-on-surface-variant mb-2">No pierdas la oportunidad de entrar en los mejores niveles de precio.</p>
 <p class="text-on-surface-variant text-sm mb-10">Recibiremos tu solicitud en <span class="text-primary font-medium">jorgesensei@nextiamarketing.com</span> y te contactaremos en menos de 24h.</p>
-<form action="https://formspree.io/f/xeoqgzpw" method="POST" class="space-y-4">
-<input type="hidden" name="_replyto" value="jorgesensei@nextiamarketing.com"/>
-<input type="hidden" name="_subject" value="Nueva solicitud Whitelist NXT Presale"/>
-<div class="grid md:grid-cols-2 gap-4">
-<input class="bg-surface-container-lowest border border-outline-variant/15 text-on-surface rounded-2xl py-4 px-6 focus:ring-2 focus:ring-primary focus:border-transparent outline-none" name="name" placeholder="Nombre completo" required="" type="text"/>
-<input class="bg-surface-container-lowest border border-outline-variant/15 text-on-surface rounded-2xl py-4 px-6 focus:ring-2 focus:ring-primary focus:border-transparent outline-none" name="email" placeholder="Correo electrónico" required="" type="email"/>
-</div>
-<input class="w-full bg-surface-container-lowest border border-outline-variant/15 text-on-surface rounded-2xl py-4 px-6 focus:ring-2 focus:ring-primary focus:border-transparent outline-none" name="telegram" placeholder="Usuario de Telegram (@alias)" required="" type="text"/>
-<select class="w-full bg-surface-container-lowest border border-outline-variant/15 text-on-surface-variant rounded-2xl py-4 px-6 focus:ring-2 focus:ring-primary focus:border-transparent outline-none" name="tier">
-<option value="Tier 1">Tier 1 — $0.005 por NXT (LIVE)</option>
-<option value="Tier 2">Tier 2 — $0.00667 por NXT</option>
-</select>
-<button class="w-full bg-primary text-on-primary font-bold py-5 rounded-2xl hover:bg-primary-container transition-colors mt-6 shadow-lg shadow-primary/20 uppercase tracking-widest" type="submit">Enviar Solicitud de Acceso</button>
+
+<!-- Web3Forms — Access Key: 87671f98-2daf-4c3c-9bfe-600ee3dd06fc -->
+<form action="https://api.web3forms.com/submit" method="POST" class="space-y-4" id="whitelist-form">
+  <input type="hidden" name="access_key" value="87671f98-2daf-4c3c-9bfe-600ee3dd06fc"/>
+  <input type="hidden" name="subject" value="🚀 Nueva solicitud Whitelist NXT Presale"/>
+  <input type="hidden" name="from_name" value="Nextia Token Presale"/>
+  <input type="hidden" name="redirect" value="https://nextia-marketing.vercel.app/#community"/>
+  <input type="checkbox" name="botcheck" class="hidden" style="display:none"/>
+  <div class="grid md:grid-cols-2 gap-4">
+    <input class="bg-surface-container-lowest border border-outline-variant/15 text-on-surface rounded-2xl py-4 px-6 focus:ring-2 focus:ring-primary focus:border-transparent outline-none" name="name" placeholder="Nombre completo" required="" type="text"/>
+    <input class="bg-surface-container-lowest border border-outline-variant/15 text-on-surface rounded-2xl py-4 px-6 focus:ring-2 focus:ring-primary focus:border-transparent outline-none" name="email" placeholder="Correo electrónico" required="" type="email"/>
+  </div>
+  <input class="w-full bg-surface-container-lowest border border-outline-variant/15 text-on-surface rounded-2xl py-4 px-6 focus:ring-2 focus:ring-primary focus:border-transparent outline-none" name="telegram" placeholder="Usuario de Telegram (@alias)" required="" type="text"/>
+  <select class="w-full bg-surface-container-lowest border border-outline-variant/15 text-on-surface-variant rounded-2xl py-4 px-6 focus:ring-2 focus:ring-primary focus:border-transparent outline-none" name="tier">
+    <option value="Tier 1">Tier 1 — $0.005 por NXT (LIVE)</option>
+    <option value="Tier 2">Tier 2 — $0.00667 por NXT</option>
+  </select>
+  <button class="w-full bg-primary text-on-primary font-bold py-5 rounded-2xl hover:bg-primary-container transition-colors mt-6 shadow-lg shadow-primary/20 uppercase tracking-widest" type="submit" id="submit-btn">Enviar Solicitud de Acceso</button>
+  <div id="result" class="hidden mt-4 p-4 rounded-2xl text-sm font-medium"></div>
 </form>
+
+<script>
+document.getElementById('whitelist-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  const result = document.getElementById('result');
+  btn.innerText = 'Enviando...';
+  btn.disabled = true;
+  const formData = new FormData(this);
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    body: formData
+  }).then(res => res.json()).then(data => {
+    if (data.success) {
+      result.className = 'mt-4 p-4 rounded-2xl text-sm font-medium bg-primary/10 text-primary border border-primary/20';
+      result.innerText = '✅ ¡Solicitud enviada! Te contactaremos a tu correo en menos de 24h.';
+      this.reset();
+    } else {
+      result.className = 'mt-4 p-4 rounded-2xl text-sm font-medium bg-red-900/20 text-red-400 border border-red-900/20';
+      result.innerText = '❌ Error al enviar. Inténtalo de nuevo o escríbenos al bot de Telegram.';
+    }
+    btn.innerText = 'Enviar Solicitud de Acceso';
+    btn.disabled = false;
+  }).catch(() => {
+    result.className = 'mt-4 p-4 rounded-2xl text-sm font-medium bg-red-900/20 text-red-400 border border-red-900/20';
+    result.innerText = '❌ Error de conexión. Usa el bot de Telegram como alternativa.';
+    btn.innerText = 'Enviar Solicitud de Acceso';
+    btn.disabled = false;
+  });
+});
+</script>
+
 <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-on-surface-variant">
 <span>O contáctanos directo:</span>
 <a href="https://t.me/nextiatoken_presale_bot" target="_blank" rel="noopener" class="text-secondary font-medium hover:underline">💬 Bot de Telegram</a>
@@ -529,9 +567,8 @@ Invertir Ahora 🚀
 </div>
 <div class="flex gap-8">
 <a class="text-[#c5c5d5] hover:text-[#ffb2bf] transition-colors duration-300 font-label text-sm uppercase tracking-wider" href="https://t.me/nextiatoken_presale_bot" target="_blank" rel="noopener">Telegram</a>
-<a class="text-[#c5c5d5] hover:text-[#ffb2bf] transition-colors duration-300 font-label text-sm uppercase tracking-wider" href="https://t.me/nextiatoken_presale_bot" target="_blank" rel="noopener">Discord</a>
 <a class="text-[#c5c5d5] hover:text-[#ffb2bf] transition-colors duration-300 font-label text-sm uppercase tracking-wider" href="https://github.com/NextiaSensei" target="_blank" rel="noopener">GitHub</a>
-<a class="text-[#c5c5d5] hover:text-[#ffb2bf] transition-colors duration-300 font-label text-sm uppercase tracking-wider" href="mailto:jorgesensei@nextiamarketing.com">Email</a>
+<a class="text-[#c5c5d5] hover:text-[#ffb2bf] transition-colors duration-300 font-label text-sm uppercase tracking-wider" href="mailto:jorgesensei@nextiamarketing.com">📧 Email</a>
 </div>
 <p class="font-['Inter'] text-sm text-[#c5c5d5] opacity-80">
 © 2026 Nextia Protocol. Powered by NextiaToken.
