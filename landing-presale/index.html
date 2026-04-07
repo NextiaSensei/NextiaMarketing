@@ -1,842 +1,560 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nextia Token - Presale | DeFi Ecosystem con Utilidad Real</title>
-    <meta name="description" content="Nextia Token: Ecosystem DeFi completo con 20% APY staking, smart contracts auditados y utilidad real. Únete a la presale hoy.">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #667eea;
-            --primary-dark: #764ba2;
-            --accent: #ff006e;
-            --text-light: #ffffff;
-            --text-dark: #0f0f1e;
-            --bg-dark: #0f0f1e;
-            --bg-card: #1a1a2e;
-            --border: rgba(255, 255, 255, 0.1);
-            --success: #4caf50;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a2e 100%);
-            color: var(--text-light);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Navbar */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(15, 15, 30, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
-            padding: 15px 40px;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8em;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 0.95em;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-        }
-
-        .nav-links a:hover {
-            opacity: 1;
-        }
-
-        .btn-presale-nav {
-            background: var(--accent);
-            color: white;
-            padding: 10px 25px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .btn-presale-nav:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(255, 0, 110, 0.3);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding-top: 150px;
-            padding-bottom: 100px;
-            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a2e 50%, rgba(102, 126, 234, 0.1) 100%);
-            text-align: center;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(102, 126, 234, 0.2);
-            border: 1px solid var(--primary);
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-
-        .hero h1 {
-            font-size: 3.5em;
-            font-weight: 800;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 50%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.1;
-        }
-
-        .hero p {
-            font-size: 1.3em;
-            opacity: 0.9;
-            margin-bottom: 40px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 60px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            padding: 16px 50px;
-            border: none;
-            border-radius: 30px;
-            font-size: 1.1em;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--primary);
-            padding: 16px 50px;
-            border: 2px solid var(--primary);
-            border-radius: 30px;
-            font-size: 1.1em;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        .hero-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
-        }
-
-        .stat-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            padding: 30px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .stat-number {
-            font-size: 2.5em;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            font-size: 0.95em;
-            opacity: 0.8;
-        }
-
-        /* Features Section */
-        .features {
-            max-width: 1200px;
-            margin: 100px auto;
-            padding: 0 40px;
-        }
-
-        .section-title {
-            font-size: 2.8em;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-bottom: 80px;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            padding: 40px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s;
-        }
-
-        .feature-card:hover {
-            border-color: var(--primary);
-            background: rgba(102, 126, 234, 0.1);
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-
-        .feature-card h3 {
-            font-size: 1.4em;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-
-        .feature-card p {
-            opacity: 0.85;
-            line-height: 1.8;
-        }
-
-        /* Tokenomics Section */
-        .tokenomics {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-            padding: 100px 40px;
-            margin: 100px 0;
-        }
-
-        .tokenomics-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .tokenomics-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .tokenomics-info h2 {
-            font-size: 2.5em;
-            margin-bottom: 30px;
-        }
-
-        .tokenomics-list {
-            list-style: none;
-            margin-bottom: 40px;
-        }
-
-        .tokenomics-list li {
-            padding: 15px 0;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .tokenomics-list strong {
-            color: var(--primary);
-        }
-
-        .tokenomics-value {
-            background: rgba(102, 126, 234, 0.2);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9em;
-        }
-
-        .presale-tiers {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 40px;
-            margin-top: 40px;
-        }
-
-        .tiers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .tier-card {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.1) 100%);
-            border: 2px solid var(--primary);
-            border-radius: 15px;
-            padding: 25px;
-            text-align: center;
-        }
 
-        .tier-card.active {
-            border-color: var(--accent);
-            background: linear-gradient(135deg, rgba(255, 0, 110, 0.2) 0%, rgba(102, 126, 234, 0.1) 100%);
+<html class="dark scroll-smooth" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nextia Token - Presale | DeFi Ecosystem con Utilidad Real</title>
+<meta content="Participa en la preventa exclusiva de Nextia Token (NXT). El futuro de las finanzas descentralizadas con staking de alto rendimiento y gobernanza real." name="description"/>
+<!-- Open Graph / Facebook -->
+<meta content="website" property="og:type"/>
+<meta content="https://nextia.io/" property="og:url"/>
+<meta content="Nextia Token - Presale | DeFi Ecosystem con Utilidad Real" property="og:title"/>
+<meta content="Acceso prioritario al ecosistema NXT. Tier 1 en vivo ahora." property="og:description"/>
+<meta content="image-hero-preview" property="og:image"/>
+<!-- Twitter -->
+<meta content="summary_large_image" property="twitter:card"/>
+<meta content="Nextia Token - Presale | DeFi Ecosystem con Utilidad Real" property="twitter:title"/>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Scripts -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-fixed-variant": "#90003b",
+                      "primary-fixed-dim": "#b9c3ff",
+                      "error": "#ffb4ab",
+                      "surface-dim": "#121221",
+                      "surface-tint": "#b9c3ff",
+                      "on-primary-container": "#001e78",
+                      "on-secondary": "#660028",
+                      "primary": "#b9c3ff",
+                      "primary-container": "#7189f6",
+                      "tertiary-fixed": "#f0dbff",
+                      "secondary": "#ffb2bf",
+                      "tertiary-container": "#aa7dd8",
+                      "on-secondary-fixed": "#3f0016",
+                      "on-primary-fixed-variant": "#1f3ba6",
+                      "surface-container": "#1e1e2e",
+                      "tertiary-fixed-dim": "#dcb8ff",
+                      "on-primary": "#002388",
+                      "secondary-fixed-dim": "#ffb2bf",
+                      "outline": "#8f909e",
+                      "error-container": "#93000a",
+                      "tertiary": "#dcb8ff",
+                      "background": "#121221",
+                      "surface-container-highest": "#343344",
+                      "inverse-on-surface": "#2f2f3f",
+                      "on-tertiary": "#44176f",
+                      "primary-fixed": "#dde1ff",
+                      "on-background": "#e3e0f6",
+                      "outline-variant": "#444653",
+                      "on-surface-variant": "#c5c5d5",
+                      "surface-variant": "#343344",
+                      "on-surface": "#e3e0f6",
+                      "on-tertiary-fixed": "#2c0051",
+                      "on-secondary-container": "#5a0022",
+                      "inverse-primary": "#3c55bf",
+                      "secondary-container": "#ff4d80",
+                      "on-tertiary-container": "#3d0d68",
+                      "secondary-fixed": "#ffd9de",
+                      "on-error": "#690005",
+                      "surface-container-lowest": "#0d0d1c",
+                      "inverse-surface": "#e3e0f6",
+                      "surface-container-high": "#292839",
+                      "on-tertiary-fixed-variant": "#5c3187",
+                      "surface-container-low": "#1a1a2a",
+                      "surface-bright": "#383848",
+                      "on-error-container": "#ffdad6",
+                      "surface": "#121221",
+                      "on-primary-fixed": "#001356"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Space Grotesk"],
+                      "body": ["Inter"],
+                      "label": ["Inter"]
+              }
+            },
+          }
         }
-
-        .tier-name {
-            font-size: 1.3em;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .tier-price {
-            font-size: 1.8em;
-            color: var(--primary);
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-
-        .tier-discount {
-            color: var(--accent);
-            font-size: 0.9em;
-            font-weight: 600;
-        }
-
-        /* Roadmap Section */
-        .roadmap {
-            max-width: 1200px;
-            margin: 100px auto;
-            padding: 0 40px;
-        }
-
-        .timeline {
-            position: relative;
-            margin-top: 50px;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
-        }
-
-        .timeline-item {
-            margin-bottom: 50px;
-            position: relative;
-        }
-
-        .timeline-item:nth-child(odd) {
-            padding-right: 50%;
-            padding-left: 0;
-            text-align: right;
-        }
-
-        .timeline-item:nth-child(even) {
-            padding-left: 50%;
-            padding-right: 0;
-            text-align: left;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 20px;
-            background: var(--primary);
-            border: 3px solid var(--bg-dark);
-            border-radius: 50%;
-            top: 0;
-        }
-
-        .timeline-content {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            padding: 30px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .timeline-content h3 {
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        /* CTA Section */
-        .cta {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            padding: 80px 40px;
-            text-align: center;
-            margin: 100px 0 0 0;
-            border-radius: 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
-
-        .cta p {
-            font-size: 1.2em;
-            opacity: 0.95;
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn-primary {
-            background: var(--accent);
-            box-shadow: 0 10px 30px rgba(255, 0, 110, 0.3);
-        }
-
-        .cta .btn-primary:hover {
-            box-shadow: 0 15px 40px rgba(255, 0, 110, 0.5);
-        }
-
-        /* Footer */
-        footer {
-            background: rgba(255, 255, 255, 0.02);
-            border-top: 1px solid var(--border);
-            padding: 40px;
-            text-align: center;
-            opacity: 0.8;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 20px;
-        }
-
-        .social-links a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .social-links a:hover {
-            color: var(--accent);
-            transform: scale(1.1);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                gap: 20px;
-            }
-
-            .hero h1 {
-                font-size: 2.2em;
-            }
-
-            .hero p {
-                font-size: 1.1em;
-            }
-
-            .section-title {
-                font-size: 2em;
-            }
-
-            .tokenomics-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item:nth-child(odd),
-            .timeline-item:nth-child(even) {
-                padding-left: 60px;
-                padding-right: 0;
-                text-align: left;
-            }
-
-            .timeline-dot {
-                left: 20px;
-            }
-
-            .hero-cta {
-                flex-direction: column;
-            }
-
-            .btn-primary, .btn-secondary {
-                width: 100%;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-content {
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .feature-card {
-            animation: fadeInUp 0.8s ease-out;
-            animation-fill-mode: both;
-        }
-
-        .feature-card:nth-child(1) { animation-delay: 0.1s; }
-        .feature-card:nth-child(2) { animation-delay: 0.2s; }
-        .feature-card:nth-child(3) { animation-delay: 0.3s; }
-        .feature-card:nth-child(4) { animation-delay: 0.4s; }
-        .feature-card:nth-child(5) { animation-delay: 0.5s; }
-        .feature-card:nth-child(6) { animation-delay: 0.6s; }
-    </style>
-</head>
-<body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">🪙 NXT</div>
-            <div class="nav-links">
-                <a href="#features">Características</a>
-                <a href="#tokenomics">Tokenomics</a>
-                <a href="#roadmap">Roadmap</a>
-                <a href="https://t.me/nextiatokenoficial" target="_blank">Telegram</a>
-                <a href="#presale" class="btn-presale-nav">Unirse a Presale</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">🚀 PRESALE TIER 1 EN VIVO</div>
-            <h1>Nextia Token</h1>
-            <p>El ecosistema DeFi completo con utilidad real. 20% APY staking, smart contracts auditados, y governance descentralizado.</p>
-            
-            <div class="hero-cta">
-                <button class="btn-primary" onclick="document.getElementById('presale').scrollIntoView({behavior:'smooth'})">
-                    Unirse a Presale Ahora
-                </button>
-                <a href="https://t.me/nextiatokenoficial" target="_blank" class="btn-secondary">
-                    Canal de Telegram
-                </a>
-            </div>
-
-            <div class="hero-stats">
-                <div class="stat-card">
-                    <div class="stat-number">1M</div>
-                    <div class="stat-label">Supply Total NXT</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">20%</div>
-                    <div class="stat-label">APY Staking</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">16/16</div>
-                    <div class="stat-label">Tests Passing</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">4</div>
-                    <div class="stat-label">Smart Contracts</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <h2 class="section-title">¿Por Qué Nextia?</h2>
-        
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🛡️</div>
-                <h3>Contratos Auditados</h3>
-                <p>4 smart contracts desarrollados con 16/16 tests passing. Código 100% transparente y verificable en GitHub. Seguridad máxima.</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">💰</div>
-                <h3>20% APY Staking</h3>
-                <p>Gana rewards pasivos sin lock-up. Stake y unstake cuando quieras. Yields sostenibles respaldados por ingresos reales del ecosistema.</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">🗳️</div>
-                <h3>DAO Governance</h3>
-                <p>1 NXT = 1 voto. Los holders deciden el futuro del protocolo. Votación descentralizada en cambios importantes.</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">🤖</div>
-                <h3>Trading Bot Integrado</h3>
-                <p>Señales automáticas de trading en Telegram. 50+ usuarios activos. Machine learning para estrategias optimizadas.</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">💼</div>
-                <h3>Ingresos Reales</h3>
-                <p>Nextia Marketing genera ingresos con clientes reales. No es vaporware. Yields provienen de revenue compartido con holders.</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">📊</div>
-                <h3>DApp Live en Vercel</h3>
-                <p>Dashboard de staking ya deployado. Interfaz moderna y responsiva. Conecta tu wallet MetaMask y comienza hoy.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tokenomics Section -->
-    <section id="tokenomics" class="tokenomics">
-        <div class="tokenomics-container">
-            <div class="tokenomics-grid">
-                <div class="tokenomics-info">
-                    <h2>Tokenomics Sostenible</h2>
-                    <p style="margin-bottom: 30px; opacity: 0.9;">Distribución equitativa diseñada para crecimiento a largo plazo y estabilidad del protocolo.</p>
-                    
-                    <ul class="tokenomics-list">
-                        <li>
-                            <strong>Supply Total</strong>
-                            <span class="tokenomics-value">1,000,000 NXT</span>
-                        </li>
-                        <li>
-                            <strong>Decimales</strong>
-                            <span class="tokenomics-value">18</span>
-                        </li>
-                        <li>
-                            <strong>Blockchain</strong>
-                            <span class="tokenomics-value">Ethereum + L2s</span>
-                        </li>
-                        <li>
-                            <strong>Token Type</strong>
-                            <span class="tokenomics-value">ERC-20 Utility</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div>
-                    <div class="presale-tiers">
-                        <h3 style="margin-bottom: 20px;">Tiers de Presale</h3>
-                        <div class="tiers-grid">
-                            <div class="tier-card active">
-                                <div class="tier-name">Tier 1</div>
-                                <div class="tier-price">$0.005</div>
-                                <div class="tier-discount">-40% Descuento</div>
-                                <p style="font-size: 0.85em; margin-top: 10px; opacity: 0.8;">500 spots</p>
-                            </div>
-
-                            <div class="tier-card">
-                                <div class="tier-name">Tier 2</div>
-                                <div class="tier-price">$0.00667</div>
-                                <div class="tier-discount">-25% Descuento</div>
-                                <p style="font-size: 0.85em; margin-top: 10px; opacity: 0.8;">500 spots</p>
-                            </div>
-
-                            <div class="tier-card">
-                                <div class="tier-name">Tier 3</div>
-                                <div class="tier-price">$0.008</div>
-                                <div class="tier-discount">-20% Descuento</div>
-                                <p style="font-size: 0.85em; margin-top: 10px; opacity: 0.8;">500 spots</p>
-                            </div>
-
-                            <div class="tier-card">
-                                <div class="tier-name">Tier 4</div>
-                                <div class="tier-price">$0.01</div>
-                                <div class="tier-discount">Sin Descuento</div>
-                                <p style="font-size: 0.85em; margin-top: 10px; opacity: 0.8;">Hasta cap</p>
-                            </div>
-                        </div>
-
-                        <p style="margin-top: 25px; font-size: 0.9em; opacity: 0.8; text-align: center;">
-                            ✅ Presale abierta ahora | ⏳ Mainnet: Q1 2026 | 🎯 Meta: $50K+
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Roadmap Section -->
-    <section id="roadmap" class="roadmap">
-        <h2 class="section-title">Roadmap - Hitos</h2>
-        
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3>Nov 2025: Presale Phase 1</h3>
-                    <p>Tiers 1-4 en vivo. Captación de inversores iniciales. Meta: $40K-$100K. Whitelist abierta para early birds.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3>Dic 2025: Testnet Deploy</h3>
-                    <p>Deployment en Sepolia testnet. Community testing y bug bounties. Auditoría externa iniciada. Governance voting live.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3>Ene 2026: Auditoría Completa</h3>
-                    <p>Reporte final de auditoría. Fixes implementados. Revisión legal completada. Preparación para mainnet.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3>Feb 2026: Mainnet Launch</h3>
-                    <p>Deploy a Ethereum mainnet. DEX listings (Uniswap v3). Trading oficial inicia. Staking rewards activos.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3>Q2 2026: Expansión</h3>
-                    <p>Multi-chain deployment (Polygon, Arbitrum). CEX listings. Partnerships estratégicas. DAO governance expansion.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Presale CTA -->
-    <section id="presale" class="cta">
-        <h2>¿Listo para Participar?</h2>
-        <p>Únete a la presale de Nextia Token. Capital inicial para Q1 2026 mainnet launch.</p>
-        <a href="#presale-form" class="btn-primary">Obtener Acceso Anticipado</a>
-    </section>
-
-    <!-- Info Section -->
-    <section style="max-width: 1200px; margin: 80px auto; padding: 0 40px;">
-        <h2 class="section-title">¿Cómo Funciona la Presale?</h2>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; margin-top: 50px;">
-            <div style="background: rgba(255,255,255,0.05); padding: 40px; border-radius: 15px; border: 1px solid var(--border);">
-                <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 1.3em;">1️⃣ Registración</h3>
-                <p style="opacity: 0.85;">Ingresa tu email en el formulario de whitelist. Recibirás detalles de cómo participar en 24 horas.</p>
-            </div>
-
-            <div style="background: rgba(255,255,255,0.05); padding: 40px; border-radius: 15px; border: 1px solid var(--border);">
-                <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 1.3em;">2️⃣ Invierte</h3>
-                <p style="opacity: 0.85;">Conecta tu wallet. Transfiere USDT o ETH. Recibe NXT automáticamente con descuentos de presale.</p>
-            </div>
-
-            <div style="background: rgba(255,255,255,0.05); padding: 40px; border-radius: 15px; border: 1px solid var(--border);">
-                <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 1.3em;">3️⃣ Stake & Gana</h3>
-                <p style="opacity: 0.85;">Una vez en mainnet, puedes stakear tus NXT y ganar 20% APY en rewards automáticos.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Whitelist Form -->
-    <section style="max-width: 600px; margin: 80px auto; padding: 0 40px;">
-        <h2 class="section-title" id="presale-form">Obtén Acceso Anticipado</h2>
-        <form style="background: rgba(255,255,255,0.05); padding: 50px 40px; border-radius: 20px; border: 1px solid var(--border); margin-top: 40px;" action="https://formspree.io/f/REEMPLAZA_AQUI" method="POST">
-            <input type="email" name="email" placeholder="Tu email" required style="width: 100%; padding: 14px; margin-bottom: 15px; border: none; border-radius: 8px; font-size: 1em; background: rgba(255,255,255,0.95); color: #333;">
-            <input type="text" name="nombre" placeholder="Tu nombre (opcional)" style="width: 100%; padding: 14px; margin-bottom: 15px; border: none; border-radius: 8px; font-size: 1em; background: rgba(255,255,255,0.95); color: #333;">
-            <input type="text" name="telegram" placeholder="Tu usuario Telegram (opcional)" style="width: 100%; padding: 14px; margin-bottom: 25px; border: none; border-radius: 8px; font-size: 1em; background: rgba(255,255,255,0.95); color: #333;">
-            <button type="submit" class="btn-primary" style="width: 100%; padding: 16px; font-size: 1.1em;">✅ Unirse a Whitelist</button>
-            <p style="text-align: center; margin-top: 20px; opacity: 0.7; font-size: 0.9em;">No hacemos spam. Tus datos están seguros. 🔐</p>
-        </form>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="social-links">
-            <a href="https://t.me/nextiatokenoficial" target="_blank">Telegram</a>
-            <a href="https://discord.gg/PtWWkpfC" target="_blank">Discord</a>
-            <a href="https://x.com/Nextia33" target="_blank">Twitter</a>
-            <a href="https://github.com/NextiaSensei" target="_blank">GitHub</a>
-        </div>
-        <p>© 2025 Nextia Token. Construido en México 🇲🇽 con ❤️</p>
-        <p style="font-size: 0.85em; margin-top: 15px;">Smart Contracts: Ethereum | DApp: Vercel | Governance: DAO</p>
-    </footer>
-
-    <script>
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
-        // Form submission
-        document.querySelector('form').addEventListener('submit', function(e) {
-            // Let Formspree handle it
-            console.log('Form submitted');
-        });
     </script>
-</body>
-</html>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #0f0f1e; }
+        .font-headline { font-family: 'Space Grotesk', sans-serif; }
+        .glass-card {
+            background: rgba(52, 51, 68, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .tonal-transition { background: linear-gradient(180deg, #1e1e2e 0%, transparent 100%); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        @keyframes pulse-soft { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        .pulse-secondary { animation: pulse-soft 3s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    </style>
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "Nextia Token (NXT) Presale",
+      "startDate": "2025-11-01T00:00:00Z",
+      "endDate": "2026-06-01T23:59:59Z",
+      "location": {
+        "@type": "VirtualLocation",
+        "url": "https://nextia.io"
+      },
+      "description": "Preventa oficial del token NXT, el pilar de la plataforma DeFi Nextia."
+    }
+    </script>
+</head>
+<body class="text-on-surface overflow-x-hidden">
+<!-- Navbar -->
+<nav class="fixed top-0 w-full z-50 bg-[#121221]/80 backdrop-blur-xl transition-all duration-300 shadow-[0_40px_40px_-15px_rgba(0,19,86,0.08)]">
+<div class="flex justify-between items-center max-w-7xl mx-auto px-8 h-20">
+<a class="text-2xl font-bold text-[#b9c3ff] flex items-center gap-2 font-headline tracking-wider" href="#">
+<span class="text-3xl">🪙</span> NXT
+            </a>
+<div class="hidden md:flex items-center gap-8 font-['Space_Grotesk'] tracking-wider uppercase text-sm font-medium">
+<a class="text-[#c5c5d5] hover:text-[#e3e0f6] transition-colors" href="#features">Características</a>
+<a class="text-[#c5c5d5] hover:text-[#e3e0f6] transition-colors" href="#tokenomics">Tokenomics</a>
+<a class="text-[#c5c5d5] hover:text-[#e3e0f6] transition-colors" href="#roadmap">Roadmap</a>
+<a class="text-[#c5c5d5] hover:text-[#e3e0f6] transition-colors" href="#community">Telegram</a>
+</div>
+<a class="bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold py-2 px-6 rounded-xl hover:scale-105 active:scale-95 transition-transform" href="#presale">
+                Presale
+            </a>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative pt-40 pb-24 overflow-hidden">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-primary/10 blur-[120px] rounded-full -z-10"></div>
+<div class="max-w-7xl mx-auto px-8 grid lg:grid-cols-2 gap-16 items-center">
+<div class="space-y-8">
+<div class="inline-flex items-center gap-2 bg-secondary/10 border border-secondary/20 px-4 py-2 rounded-full">
+<span class="w-2 h-2 rounded-full bg-secondary pulse-secondary"></span>
+<span class="text-secondary text-xs font-bold tracking-widest uppercase">Presale Tier 1 En Vivo</span>
+</div>
+<h1 class="text-6xl md:text-8xl font-headline font-bold text-primary leading-none tracking-tight">
+                    Nextia Token
+                </h1>
+<p class="text-on-surface-variant text-xl max-w-xl font-light leading-relaxed">
+                    Accede a la infraestructura DeFi de próxima generación. Seguridad institucional, rendimientos sostenibles y el motor de gobernanza que redefine la liquidez.
+                </p>
+<div class="flex flex-wrap gap-4">
+<a class="bg-gradient-to-r from-secondary to-secondary-container text-on-secondary-fixed font-bold py-4 px-10 rounded-xl hover:shadow-[0_0_30px_rgba(255,77,128,0.3)] transition-all" href="#presale">
+                        Invertir Ahora
+                    </a>
+<a class="bg-surface-variant/20 border border-outline-variant/15 text-on-surface font-semibold py-4 px-10 rounded-xl hover:bg-surface-variant/40 transition-all flex items-center gap-2 backdrop-blur-sm" href="#how">
+                        ¿Cómo funciona? <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+<!-- Stats -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-12">
+<div class="glass-card p-4 rounded-xl border border-outline-variant/10">
+<div class="text-primary font-headline text-2xl font-bold">1M</div>
+<div class="text-on-surface-variant text-[10px] uppercase tracking-widest">Supply</div>
+</div>
+<div class="glass-card p-4 rounded-xl border border-outline-variant/10">
+<div class="text-primary font-headline text-2xl font-bold">20%</div>
+<div class="text-on-surface-variant text-[10px] uppercase tracking-widest">APY</div>
+</div>
+<div class="glass-card p-4 rounded-xl border border-outline-variant/10">
+<div class="text-primary font-headline text-2xl font-bold">16/16</div>
+<div class="text-on-surface-variant text-[10px] uppercase tracking-widest">Tests</div>
+</div>
+<div class="glass-card p-4 rounded-xl border border-outline-variant/10">
+<div class="text-primary font-headline text-2xl font-bold">4</div>
+<div class="text-on-surface-variant text-[10px] uppercase tracking-widest">Smart C.</div>
+</div>
+</div>
+</div>
+<!-- Countdown Card -->
+<div class="glass-card p-8 rounded-3xl border border-primary/20 shadow-2xl relative" id="presale">
+<div class="absolute -top-12 -right-12 w-64 h-64 bg-secondary/5 blur-[80px] -z-10"></div>
+<h3 class="text-center text-primary font-headline text-xl font-medium mb-8">El lanzamiento comienza en:</h3>
+<div class="grid grid-cols-4 gap-4 text-center">
+<div class="space-y-2">
+<div class="bg-surface-container-highest p-4 rounded-2xl text-4xl font-headline font-bold text-on-surface border border-outline-variant/10" id="days">00</div>
+<div class="text-[10px] uppercase text-on-surface-variant tracking-tighter">Días</div>
+</div>
+<div class="space-y-2">
+<div class="bg-surface-container-highest p-4 rounded-2xl text-4xl font-headline font-bold text-on-surface border border-outline-variant/10" id="hours">00</div>
+<div class="text-[10px] uppercase text-on-surface-variant tracking-tighter">Horas</div>
+</div>
+<div class="space-y-2">
+<div class="bg-surface-container-highest p-4 rounded-2xl text-4xl font-headline font-bold text-on-surface border border-outline-variant/10" id="minutes">00</div>
+<div class="text-[10px] uppercase text-on-surface-variant tracking-tighter">Mins</div>
+</div>
+<div class="space-y-2">
+<div class="bg-surface-container-highest p-4 rounded-2xl text-4xl font-headline font-bold text-on-surface border border-outline-variant/10" id="seconds">00</div>
+<div class="text-[10px] uppercase text-on-surface-variant tracking-tighter">Secs</div>
+</div>
+</div>
+<div class="mt-12 space-y-4">
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Spots vendidos <span class="text-on-surface font-bold">247/500</span> Tier 1</span>
+<span class="text-secondary font-bold">49%</span>
+</div>
+<div class="w-full h-3 bg-surface-container-lowest rounded-full overflow-hidden border border-outline-variant/10">
+<div class="h-full bg-gradient-to-r from-secondary to-secondary-container w-[49%] transition-all duration-1000 ease-out shadow-[0_0_15px_rgba(255,77,128,0.5)]"></div>
+</div>
+</div>
+<div class="mt-10 p-6 bg-primary/5 rounded-2xl border border-primary/10">
+<div class="flex justify-between items-center mb-2">
+<span class="text-on-surface-variant text-sm">Precio Actual</span>
+<span class="text-primary font-bold">1 NXT = $0.005</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant text-sm">Próximo Tier</span>
+<span class="text-on-surface-variant font-medium">$0.00667</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Section -->
+<section class="py-24 bg-surface-container-low/30" id="features">
+<div class="max-w-7xl mx-auto px-8">
+<div class="text-center mb-20">
+<h2 class="text-4xl md:text-5xl font-headline font-bold text-on-surface mb-6">Infraestructura de Grado DeFi</h2>
+<p class="text-on-surface-variant max-w-2xl mx-auto">Tecnología de vanguardia diseñada para maximizar el valor y la seguridad de tu inversión.</p>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="glass-card p-10 rounded-[2rem] border border-outline-variant/10 hover:border-primary/30 transition-all group">
+<div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary text-3xl">shield</span>
+</div>
+<h3 class="text-2xl font-headline font-bold mb-4">Contratos Auditados</h3>
+<p class="text-on-surface-variant font-light leading-relaxed">Código verificado por firmas líderes de ciberseguridad para garantizar la integridad de cada transacción.</p>
+</div>
+<!-- Card 2 -->
+<div class="glass-card p-10 rounded-[2rem] border border-outline-variant/10 hover:border-primary/30 transition-all group">
+<div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary text-3xl">payments</span>
+</div>
+<h3 class="text-2xl font-headline font-bold mb-4">20% APY Staking</h3>
+<p class="text-on-surface-variant font-light leading-relaxed">Gana recompensas pasivas bloqueando tus NXT en nuestro pool de liquidez institucional.</p>
+</div>
+<!-- Card 3 -->
+<div class="glass-card p-10 rounded-[2rem] border border-outline-variant/10 hover:border-primary/30 transition-all group">
+<div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary text-3xl">how_to_vote</span>
+</div>
+<h3 class="text-2xl font-headline font-bold mb-4">DAO Governance</h3>
+<p class="text-on-surface-variant font-light leading-relaxed">Tu voto importa. Los holders deciden el futuro del protocolo a través de propuestas on-chain.</p>
+</div>
+<!-- Card 4 -->
+<div class="glass-card p-10 rounded-[2rem] border border-outline-variant/10 hover:border-primary/30 transition-all group">
+<div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary text-3xl">smart_toy</span>
+</div>
+<h3 class="text-2xl font-headline font-bold mb-4">Trading Bot</h3>
+<p class="text-on-surface-variant font-light leading-relaxed">IA avanzada integrada para optimizar entradas y salidas en mercados volátiles automáticamente.</p>
+</div>
+<!-- Card 5 -->
+<div class="glass-card p-10 rounded-[2rem] border border-outline-variant/10 hover:border-primary/30 transition-all group">
+<div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary text-3xl">work_history</span>
+</div>
+<h3 class="text-2xl font-headline font-bold mb-4">Ingresos Reales</h3>
+<p class="text-on-surface-variant font-light leading-relaxed">Basado en utilidad real y comisiones de la red, no en inflación algorítmica.</p>
+</div>
+<!-- Card 6 -->
+<div class="glass-card p-10 rounded-[2rem] border border-outline-variant/10 hover:border-primary/30 transition-all group">
+<div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary text-3xl">data_exploration</span>
+</div>
+<h3 class="text-2xl font-headline font-bold mb-4">DApp en Vercel</h3>
+<p class="text-on-surface-variant font-light leading-relaxed">Interfaz ultra-rápida y optimizada para dispositivos móviles para gestionar tus activos.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Tokenomics & Tiers -->
+<section class="py-24 relative" id="tokenomics">
+<div class="max-w-7xl mx-auto px-8">
+<div class="grid lg:grid-cols-2 gap-20 items-start">
+<div>
+<h2 class="text-4xl md:text-5xl font-headline font-bold text-on-surface mb-10">Economía del Token</h2>
+<div class="glass-card rounded-3xl border border-outline-variant/10 overflow-hidden">
+<table class="w-full text-left">
+<thead class="bg-surface-container-high/50 text-primary font-headline uppercase text-xs tracking-widest">
+<tr>
+<th class="p-6">Distribución</th>
+<th class="p-6">Porcentaje</th>
+<th class="p-6">Amount (NXT)</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10 font-light text-sm">
+<tr>
+<td class="p-6">Public Sale (Tiers)</td>
+<td class="p-6">45%</td>
+<td class="p-6">450,000</td>
+</tr>
+<tr>
+<td class="p-6">Liquidity Pool</td>
+<td class="p-6">25%</td>
+<td class="p-6">250,000</td>
+</tr>
+<tr>
+<td class="p-6">Staking Rewards</td>
+<td class="p-6">15%</td>
+<td class="p-6">150,000</td>
+</tr>
+<tr>
+<td class="p-6">Team &amp; Advisors</td>
+<td class="p-6">10%</td>
+<td class="p-6">100,000</td>
+</tr>
+<tr>
+<td class="p-6">Ecosystem Fund</td>
+<td class="p-6">5%</td>
+<td class="p-6">50,000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="grid sm:grid-cols-2 gap-4">
+<!-- Tier 1 -->
+<div class="bg-primary/10 border-2 border-primary p-8 rounded-3xl relative overflow-hidden">
+<div class="absolute -right-6 -top-6 w-20 h-20 bg-primary/20 rotate-45 flex items-center justify-center text-[10px] font-bold text-primary">LIVE</div>
+<h4 class="text-primary font-headline font-bold text-xl mb-2">Tier 1</h4>
+<div class="text-3xl font-headline font-bold mb-4">$0.005</div>
+<ul class="text-on-surface-variant text-xs space-y-2 mb-6">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-primary">check_circle</span> Min Inv: $100</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-primary">check_circle</span> Max Bonus: 15%</li>
+</ul>
+<button class="w-full py-3 bg-primary text-on-primary rounded-xl font-bold text-sm">Seleccionado</button>
+</div>
+<!-- Tier 2 -->
+<div class="glass-card border border-outline-variant/10 p-8 rounded-3xl opacity-80">
+<h4 class="text-on-surface font-headline font-bold text-xl mb-2">Tier 2</h4>
+<div class="text-3xl font-headline font-bold mb-4">$0.00667</div>
+<ul class="text-on-surface-variant text-xs space-y-2 mb-6">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">schedule</span> Pendiente</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">check_circle</span> Bonus: 10%</li>
+</ul>
+<button class="w-full py-3 bg-surface-variant text-on-surface rounded-xl font-bold text-sm">Próximamente</button>
+</div>
+<!-- Tier 3 -->
+<div class="glass-card border border-outline-variant/10 p-8 rounded-3xl opacity-60">
+<h4 class="text-on-surface font-headline font-bold text-xl mb-2">Tier 3</h4>
+<div class="text-3xl font-headline font-bold mb-4">$0.008</div>
+<button class="w-full py-3 bg-surface-variant text-on-surface rounded-xl font-bold text-sm">Bloqueado</button>
+</div>
+<!-- Tier 4 -->
+<div class="glass-card border border-outline-variant/10 p-8 rounded-3xl opacity-40">
+<h4 class="text-on-surface font-headline font-bold text-xl mb-2">Tier 4</h4>
+<div class="text-3xl font-headline font-bold mb-4">$0.01</div>
+<button class="w-full py-3 bg-surface-variant text-on-surface rounded-xl font-bold text-sm">Bloqueado</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- How it Works -->
+<section class="py-24 bg-surface-container-low" id="how">
+<div class="max-w-7xl mx-auto px-8">
+<h2 class="text-4xl font-headline font-bold text-center mb-16">Inicia en 3 Pasos</h2>
+<div class="grid md:grid-cols-3 gap-12 relative">
+<div class="absolute top-1/2 left-0 w-full h-[1px] bg-primary/20 hidden md:block -z-10"></div>
+<div class="text-center space-y-6">
+<div class="w-16 h-16 bg-primary text-on-primary font-headline font-bold text-2xl flex items-center justify-center rounded-full mx-auto ring-8 ring-background">1</div>
+<h3 class="text-xl font-bold">Registración</h3>
+<p class="text-on-surface-variant text-sm font-light">Crea tu cuenta de inversor y completa la verificación rápida para asegurar tu cupo.</p>
+</div>
+<div class="text-center space-y-6">
+<div class="w-16 h-16 bg-primary text-on-primary font-headline font-bold text-2xl flex items-center justify-center rounded-full mx-auto ring-8 ring-background">2</div>
+<h3 class="text-xl font-bold">Invierte</h3>
+<p class="text-on-surface-variant text-sm font-light">Selecciona tu método de pago preferido (USDT, ETH, USDC) y adquiere tus tokens NXT.</p>
+</div>
+<div class="text-center space-y-6">
+<div class="w-16 h-16 bg-primary text-on-primary font-headline font-bold text-2xl flex items-center justify-center rounded-full mx-auto ring-8 ring-background">3</div>
+<h3 class="text-xl font-bold">Stake</h3>
+<p class="text-on-surface-variant text-sm font-light">Recibe tus tokens al instante y ponlos a trabajar con nuestro motor de Staking al 20% APY.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Roadmap -->
+<section class="py-24" id="roadmap">
+<div class="max-w-7xl mx-auto px-8">
+<div class="text-center mb-20">
+<h2 class="text-4xl md:text-5xl font-headline font-bold mb-4">Hoja de Ruta</h2>
+<div class="w-24 h-1 bg-secondary mx-auto rounded-full"></div>
+</div>
+<div class="space-y-4">
+<div class="flex items-center gap-8 glass-card p-6 rounded-2xl border border-outline-variant/10">
+<div class="text-primary font-headline font-bold whitespace-nowrap min-w-[120px]">NOV 2025</div>
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<div class="flex-grow">
+<h4 class="font-bold">Lanzamiento de Preventa</h4>
+<p class="text-sm text-on-surface-variant">Apertura del Tier 1 para inversores tempranos y fundadores.</p>
+</div>
+</div>
+<div class="flex items-center gap-8 glass-card p-6 rounded-2xl border border-outline-variant/10">
+<div class="text-on-surface-variant font-headline font-bold whitespace-nowrap min-w-[120px]">DIC 2025</div>
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+<div class="flex-grow">
+<h4 class="font-bold">Testnet Pública</h4>
+<p class="text-sm text-on-surface-variant">Despliegue del protocolo en red de prueba para validación de comunidad.</p>
+</div>
+</div>
+<div class="flex items-center gap-8 glass-card p-6 rounded-2xl border border-outline-variant/10">
+<div class="text-on-surface-variant font-headline font-bold whitespace-nowrap min-w-[120px]">ENE 2026</div>
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+<div class="flex-grow">
+<h4 class="font-bold">Auditoría Final</h4>
+<p class="text-sm text-on-surface-variant">Certificación completa de seguridad por CertiK y Hacken.</p>
+</div>
+</div>
+<div class="flex items-center gap-8 glass-card p-6 rounded-2xl border border-outline-variant/10">
+<div class="text-on-surface-variant font-headline font-bold whitespace-nowrap min-w-[120px]">Q2 2026</div>
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+<div class="flex-grow">
+<h4 class="font-bold">Mainnet Launch</h4>
+<p class="text-sm text-on-surface-variant">Despliegue oficial y listado en Exchanges Tier 1.</p>
+</div>
+</div>
+<div class="flex items-center gap-8 glass-card p-6 rounded-2xl border border-outline-variant/10">
+<div class="text-on-surface-variant font-headline font-bold whitespace-nowrap min-w-[120px]">Q3 2026</div>
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+<div class="flex-grow">
+<h4 class="font-bold">Multi-chain Expansion</h4>
+<p class="text-sm text-on-surface-variant">Puentes a Arbitrum, Polygon y Solana para máxima interoperabilidad.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Blog Section -->
+<section class="py-24 bg-surface-container-lowest">
+<div class="max-w-7xl mx-auto px-8">
+<div class="flex justify-between items-end mb-12">
+<div>
+<h2 class="text-4xl font-headline font-bold">Últimas Noticias</h2>
+<p class="text-on-surface-variant mt-2">Mantente al día con el ecosistema Nextia.</p>
+</div>
+<a class="text-primary font-bold hover:underline" href="/blog/">Ver todo</a>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<article class="glass-card rounded-[2.5rem] overflow-hidden group border border-outline-variant/10">
+<div class="h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Futuristic digital data visualization with blue glowing lines and abstract nodes in a dark environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVvXv3nKVFOkdCyclJyCbU63g-FfTeNpIVGF3GwRHlqyx72jnEk5kUlc4TTEfX0mNoqWjqKx8-S-qnUopHxLQKRHNSwF_3xoJFzoT1npKAEIISoM0TzaK8rveXOh-4-LH6pSOxSbhFQlB1-ClaDqbubp4U8M_UiamSAOGQIWD1LVVQq7Ei-Z59Yem-c9XaPvQExnOIwiYgcTuw1gNOLoqlnhICT_uQPDsEknSN7URepcn_39BLAce6eWot92ewHsyxH4pxPRdR0OA"/>
+</div>
+<div class="p-8">
+<span class="text-xs font-bold text-secondary tracking-widest uppercase">Ecosistema</span>
+<h3 class="text-xl font-headline font-bold mt-4 mb-4">Cómo NXT está cambiando el Staking</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2">Exploramos los mecanismos matemáticos que permiten un 20% APY sostenible a largo plazo...</p>
+</div>
+</article>
+<article class="glass-card rounded-[2.5rem] overflow-hidden group border border-outline-variant/10">
+<div class="h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Abstract 3D golden spheres and metallic structures floating in deep space reflecting purple light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2IrySmDl11JAPOhxW_AGT6IwScGsAdI_9EQ5fcGiNXY1PoCXz4V0qZUSwam25um1wQaPpTfvh8GIkxWzxguB0KVMqQnuYmhzhqR_xHJQ0VcL-7t-giGy-L6IE3KSYbxYhM36w3e8hqfDA-dJvYU99lUWpHcFharzuNHGuHkLYg8lpbBX46RYsNj0-jLIoZqvX6J9wRs2izF4PYIalQOZFsHCb2qzFEU2z-pi5uPXJMopsuYEQhlAxiP5hd7JMxIQ81wWLJyOrrvs"/>
+</div>
+<div class="p-8">
+<span class="text-xs font-bold text-secondary tracking-widest uppercase">Seguridad</span>
+<h3 class="text-xl font-headline font-bold mt-4 mb-4">Alianza con Auditores de Elite</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2">Nuestros smart contracts han superado las primeras 16 pruebas internas de estrés...</p>
+</div>
+</article>
+<article class="glass-card rounded-[2.5rem] overflow-hidden group border border-outline-variant/10">
+<div class="h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="High tech server room with glowing blue led lights and futuristic server racks depth of field" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYtOfh77TDk1ycn2dH3Gtnc3kj3H8BMZGJqI1YnVgPx-zVm-VNZJjZkihrNaVHwKfQXPYmhzj7M33a38LUIoD66Tc8EQR5XETr7UPDvJAyy3z24VIYl3MyePH_md7G-kbSjNGXJoq0BXSfpoCdskEkoMETdyAft9t5w3GJK4YacebO9rMmgCYqUpimfsgYUZJALKqiuzq7fVw2jcXqztmm_3nrHIwQmIqtB6triZMTcIs12pqO39TjvYEtMvcF1c3iQ5BwePyKL-k"/>
+</div>
+<div class="p-8">
+<span class="text-xs font-bold text-secondary tracking-widest uppercase">Comunidad</span>
+<h3 class="text-xl font-headline font-bold mt-4 mb-4">Gobernanza Descentralizada</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2">Presentamos el nuevo panel de votación para la DAO de holders de Nextia Token...</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- Whitelist Form -->
+<section class="py-24 relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 -skew-y-3 pointer-events-none"></div>
+<div class="max-w-4xl mx-auto px-8 relative">
+<div class="glass-card p-12 rounded-[3rem] border border-primary/20 text-center">
+<h2 class="text-4xl font-headline font-bold mb-4">Únete a la Whitelist</h2>
+<p class="text-on-surface-variant mb-10">No pierdas la oportunidad de entrar en los mejores niveles de precio.</p>
+<form action="https://formspree.io/f/REEMPLAZA_AQUI" class="space-y-4" method="POST">
+<div class="grid md:grid-cols-2 gap-4">
+<input class="bg-surface-container-lowest border border-outline-variant/15 text-on-surface rounded-2xl py-4 px-6 focus:ring-2 focus:ring-primary focus:border-transparent outline-none" name="name" placeholder="Nombre completo" required="" type="text"/>
+<input class="bg-surface-container-lowest border border-outline-variant/15 text-on-surface rounded-2xl py-4 px-6 focus:ring-2 focus:ring-primary focus:border-transparent outline-none" name="email" placeholder="Correo electrónico" required="" type="email"/>
+</div>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/15 text-on-surface rounded-2xl py-4 px-6 focus:ring-2 focus:ring-primary focus:border-transparent outline-none" name="telegram" placeholder="Usuario de Telegram (@alias)" required="" type="text"/>
+<button class="w-full bg-primary text-on-primary font-bold py-5 rounded-2xl hover:bg-primary-container transition-colors mt-6 shadow-lg shadow-primary/20 uppercase tracking-widest" type="submit">Enviar Solicitud de Acceso</button>
+</form>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-[#121221] py-12 border-t border-[#444653]/15">
+<div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto px-8 gap-6">
+<div>
+<a class="text-xl font-bold text-[#b9c3ff] font-headline tracking-widest uppercase" href="#">NXT</a>
+</div>
+<div class="flex gap-8">
+<a class="text-[#c5c5d5] hover:text-[#ffb2bf] transition-colors duration-300 font-label text-sm uppercase tracking-wider" href="#">Telegram</a>
+<a class="text-[#c5c5d5] hover:text-[#ffb2bf] transition-colors duration-300 font-label text-sm uppercase tracking-wider" href="#">Discord</a>
+<a class="text-[#c5c5d5] hover:text-[#ffb2bf] transition-colors duration-300 font-label text-sm uppercase tracking-wider" href="#">Twitter</a>
+<a class="text-[#c5c5d5] hover:text-[#ffb2bf] transition-colors duration-300 font-label text-sm uppercase tracking-wider" href="#">GitHub</a>
+</div>
+<p class="font-['Inter'] text-sm text-[#c5c5d5] opacity-80">
+                © 2024 The Nextia Protocol. Secured by Ethereal Vault technology.
+            </p>
+</div>
+</footer>
+<script>
+        // Countdown Logic
+        const targetDate = new Date("June 1, 2026 00:00:00").getTime();
+
+        const countdown = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(countdown);
+                document.getElementById("days").innerText = "00";
+                // etc...
+            }
+        }, 1000);
+
+        // Navbar opacity on scroll
+        window.onscroll = function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-[#121221]/95');
+                nav.classList.remove('bg-[#121221]/80');
+            } else {
+                nav.classList.add('bg-[#121221]/80');
+                nav.classList.remove('bg-[#121221]/95');
+            }
+        };
+    </script>
+</body></html>
