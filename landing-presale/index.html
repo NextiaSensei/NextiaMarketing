@@ -4,556 +4,660 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 
-<title>Nextia Token (NXT) | Ecosistema DeFi con Staking, DAO y Trading Bots</title>
+<title>Nextia Token (NXT) | Ecosistema Web3 Experimental sobre Ethereum</title>
 
-<meta content="Nextia Token (NXT) es un ecosistema Web3 en desarrollo enfocado en staking, gobernanza DAO y herramientas automatizadas de trading. Smart contracts desplegados en Sepolia y pruebas internas completadas." name="description"/>
+<meta
+  name="description"
+  content="Nextia Token (NXT) es un ecosistema Web3 experimental construido sobre Ethereum. Smart contracts ERC20, staking, gobernanza DAO y herramientas automatizadas en desarrollo activo."
+/>
 
 <!-- Open Graph -->
-<meta content="website" property="og:type"/>
-<meta content="https://nextia.io/" property="og:url"/>
-<meta content="Nextia Token (NXT)" property="og:title"/>
-<meta content="Ecosistema DeFi experimental con staking, gobernanza y automatización." property="og:description"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://nextia-marketing.vercel.app/"/>
+<meta property="og:title" content="Nextia Token (NXT)"/>
+<meta property="og:description" content="Explora el ecosistema experimental de Nextia sobre Ethereum."/>
+<meta property="og:image" content="https://nextia-marketing.vercel.app/preview.png"/>
 
 <!-- Twitter -->
-<meta content="summary_large_image" property="twitter:card"/>
-<meta content="Nextia Token (NXT)" property="twitter:title"/>
+<meta property="twitter:card" content="summary_large_image"/>
+<meta property="twitter:title" content="Nextia Token (NXT)"/>
+<meta property="twitter:description" content="Infraestructura Web3 experimental sobre Ethereum."/>
+<meta property="twitter:image" content="https://nextia-marketing.vercel.app/preview.png"/>
 
 <!-- Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
 
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-
-<script id="tailwind-config">
+<script>
 tailwind.config = {
-darkMode: "class",
-theme: {
-extend: {
-colors: {
-primary: "#b9c3ff",
-secondary: "#ffb2bf",
-background: "#121221",
-surface: "#121221",
-surfaceVariant: "#343344",
-outline: "#8f909e",
-textMain: "#e3e0f6",
-textSoft: "#c5c5d5",
-accent: "#7189f6"
-},
-fontFamily: {
-headline: ["Space Grotesk"],
-body: ["Inter"]
-}
-}
-}
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        background: "#080816",
+        surface: "#121221",
+        primary: "#b9c3ff",
+        secondary: "#ff4d80",
+        muted: "#c5c5d5",
+        card: "#1c1c30",
+        border: "#2d2d45"
+      },
+      fontFamily: {
+        headline: ["Space Grotesk"],
+        body: ["Inter"]
+      }
+    }
+  }
 }
 </script>
 
 <style>
 body{
-font-family:'Inter',sans-serif;
-background:#0f0f1e;
+  font-family:'Inter',sans-serif;
+  background:#080816;
+  color:#fff;
 }
 
 .font-headline{
-font-family:'Space Grotesk',sans-serif;
+  font-family:'Space Grotesk',sans-serif;
 }
 
-.glass-card{
-background:rgba(52,51,68,0.4);
-backdrop-filter:blur(20px);
--webkit-backdrop-filter:blur(20px);
+.glass{
+  background:rgba(28,28,48,.55);
+  border:1px solid rgba(255,255,255,.05);
+  backdrop-filter:blur(18px);
 }
 
-@keyframes pulse-soft{
-0%,100%{opacity:1;}
-50%{opacity:.6;}
+.hero-glow{
+  position:absolute;
+  width:900px;
+  height:900px;
+  background:radial-gradient(circle,#5d6dff33 0%,transparent 70%);
+  filter:blur(80px);
+  top:-250px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:-1;
 }
 
-.pulse-secondary{
-animation:pulse-soft 3s infinite;
+.grid-glow{
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size:40px 40px;
+}
+
+.gradient-text{
+  background:linear-gradient(90deg,#ffffff,#b9c3ff,#ff4d80);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.card-hover{
+  transition:.35s ease;
+}
+
+.card-hover:hover{
+  transform:translateY(-8px);
+  border-color:#b9c3ff44;
+  box-shadow:0 0 40px rgba(185,195,255,.12);
+}
+
+.telegram-button{
+  background:linear-gradient(90deg,#5865ff,#ff4d80);
+}
+
+.telegram-button:hover{
+  transform:scale(1.03);
+  box-shadow:0 0 35px rgba(255,77,128,.35);
+}
+
+.glow-border{
+  position:relative;
+}
+
+.glow-border::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  background:linear-gradient(90deg,#5865ff,#ff4d80);
+  opacity:.18;
+  z-index:-1;
+}
+
+.live-dot{
+  animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1);opacity:1}
+  50%{transform:scale(1.3);opacity:.5}
+  100%{transform:scale(1);opacity:1}
 }
 </style>
-
 </head>
 
-<body class="text-textMain overflow-x-hidden">
+<body class="overflow-x-hidden">
+
+<!-- BACKGROUND -->
+<div class="hero-glow"></div>
 
 <!-- NAVBAR -->
+<nav class="fixed top-0 left-0 w-full z-50 border-b border-white/5 bg-[#080816cc] backdrop-blur-xl">
+  <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
 
-<nav class="fixed top-0 w-full z-50 bg-[#121221]/80 backdrop-blur-xl border-b border-[#343344]/30">
+    <a href="#" class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-yellow-400 flex items-center justify-center text-black font-bold">
+        🪙
+      </div>
+      <span class="font-headline font-bold tracking-widest text-xl text-primary">
+        NXT
+      </span>
+    </a>
 
-<div class="flex justify-between items-center max-w-7xl mx-auto px-8 h-20">
+    <div class="hidden md:flex items-center gap-10 uppercase tracking-[.2em] text-xs text-muted">
+      <a href="#ecosistema" class="hover:text-white transition">Ecosistema</a>
+      <a href="#tokenomics" class="hover:text-white transition">Tokenomics</a>
+      <a href="#roadmap" class="hover:text-white transition">Roadmap</a>
+      <a href="#audit" class="hover:text-white transition">Auditoría</a>
+    </div>
 
-<a class="text-2xl font-bold text-primary flex items-center gap-2 font-headline tracking-wider" href="#">
-<span class="text-3xl">🪙</span> NXT
-</a>
+    <!-- TELEGRAM REAL -->
+    <a
+      href="https://t.me/NextiaTokenBot"
+      target="_blank"
+      class="telegram-button text-white px-6 py-3 rounded-2xl font-bold transition-all duration-300"
+    >
+      Telegram
+    </a>
 
-<div class="hidden md:flex items-center gap-8 uppercase text-sm font-medium tracking-widest">
-<a class="text-textSoft hover:text-white transition-colors" href="#features">Ecosistema</a>
-<a class="text-textSoft hover:text-white transition-colors" href="#tokenomics">Tokenomics</a>
-<a class="text-textSoft hover:text-white transition-colors" href="#roadmap">Roadmap</a>
-<a class="text-textSoft hover:text-white transition-colors" href="#community">Telegram</a>
-</div>
-
-<a class="bg-gradient-to-r from-primary to-accent text-black font-bold py-2 px-6 rounded-xl hover:scale-105 transition-transform" href="#presale">
-Whitelist
-</a>
-
-</div>
+  </div>
 </nav>
 
 <!-- HERO -->
+<section class="relative pt-40 pb-28 grid-glow">
 
-<section class="relative pt-40 pb-24 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
 
-<div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-primary/10 blur-[120px] rounded-full -z-10"></div>
+    <!-- LEFT -->
+    <div>
 
-<div class="max-w-7xl mx-auto px-8 grid lg:grid-cols-2 gap-16 items-center">
+      <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full glass mb-8">
+        <div class="w-2 h-2 rounded-full bg-pink-500 live-dot"></div>
+        <span class="text-xs uppercase tracking-[.25em] text-pink-300 font-bold">
+          Sepolia Live • Desarrollo Activo
+        </span>
+      </div>
 
-<!-- LEFT -->
+      <h1 class="font-headline text-6xl md:text-8xl font-bold leading-none mb-8">
+        <span class="gradient-text">
+          Nextia Token
+        </span>
+      </h1>
 
-<div class="space-y-8">
+      <p class="text-xl text-muted leading-relaxed max-w-2xl">
+        Nextia es un ecosistema Web3 experimental construido sobre Ethereum.
+        Incluye smart contracts ERC20, staking, gobernanza DAO y herramientas
+        automatizadas conectadas a infraestructura real de trading.
+      </p>
 
-<div class="inline-flex items-center gap-2 bg-secondary/10 border border-secondary/20 px-4 py-2 rounded-full">
-<span class="w-2 h-2 rounded-full bg-secondary pulse-secondary"></span>
+      <div class="flex flex-wrap gap-5 mt-10">
 
-<span class="text-secondary text-xs font-bold tracking-widest uppercase">
-Sepolia Live • Desarrollo Activo
-</span>
-</div>
+        <!-- BOT TELEGRAM -->
+        <a
+          href="https://t.me/NextiaTokenBot"
+          target="_blank"
+          class="telegram-button px-8 py-5 rounded-2xl font-bold text-lg transition-all duration-300"
+        >
+          Entrar al Bot de Telegram
+        </a>
 
-<h1 class="text-6xl md:text-8xl font-headline font-bold text-primary leading-none tracking-tight">
-Nextia Token
-</h1>
+        <a
+          href="https://github.com/NextiaSensei/NextiaToken"
+          target="_blank"
+          class="glass border border-white/10 px-8 py-5 rounded-2xl font-semibold hover:border-primary/40 transition"
+        >
+          GitHub
+        </a>
 
-<p class="text-textSoft text-xl max-w-xl font-light leading-relaxed">
-Nextia es un ecosistema Web3 experimental construido sobre Ethereum. 
-Incluye smart contracts ERC20, staking, gobernanza DAO y herramientas automatizadas de trading actualmente en fase de pruebas.
-</p>
+      </div>
 
-<div class="flex flex-wrap gap-4">
+      <!-- STATS -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-5 mt-14">
 
-<a class="bg-gradient-to-r from-secondary to-pink-500 text-black font-bold py-4 px-10 rounded-xl hover:scale-105 transition-all"
-href="https://t.me/NextiaToken" target="_blank">
-Telegram
-</a>
+        <div class="glass p-5 rounded-2xl">
+          <div class="text-4xl font-bold font-headline text-primary">1M</div>
+          <div class="text-xs uppercase tracking-[.2em] text-muted mt-2">
+            Supply
+          </div>
+        </div>
 
-<a class="bg-[#1e1e2e] border border-[#343344] text-white font-semibold py-4 px-10 rounded-xl hover:bg-[#292839] transition-all"
-href="https://github.com/NextiaSensei/NextiaToken" target="_blank">
-GitHub
-</a>
+        <div class="glass p-5 rounded-2xl">
+          <div class="text-4xl font-bold font-headline text-primary">33</div>
+          <div class="text-xs uppercase tracking-[.2em] text-muted mt-2">
+            Tests
+          </div>
+        </div>
 
-</div>
+        <div class="glass p-5 rounded-2xl">
+          <div class="text-4xl font-bold font-headline text-primary">4</div>
+          <div class="text-xs uppercase tracking-[.2em] text-muted mt-2">
+            Contracts
+          </div>
+        </div>
 
-<!-- STATS -->
+        <div class="glass p-5 rounded-2xl">
+          <div class="text-4xl font-bold font-headline text-primary">DAO</div>
+          <div class="text-xs uppercase tracking-[.2em] text-muted mt-2">
+            Governance
+          </div>
+        </div>
 
-<div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-12">
+      </div>
 
-<div class="glass-card p-4 rounded-xl border border-[#343344]/40">
-<div class="text-primary font-headline text-2xl font-bold">1M</div>
-<div class="text-textSoft text-[10px] uppercase tracking-widest">Supply</div>
-</div>
+    </div>
 
-<div class="glass-card p-4 rounded-xl border border-[#343344]/40">
-<div class="text-primary font-headline text-2xl font-bold">33</div>
-<div class="text-textSoft text-[10px] uppercase tracking-widest">Tests</div>
-</div>
+    <!-- RIGHT -->
+    <div class="glass glow-border rounded-[2rem] p-8 relative">
 
-<div class="glass-card p-4 rounded-xl border border-[#343344]/40">
-<div class="text-primary font-headline text-2xl font-bold">4</div>
-<div class="text-textSoft text-[10px] uppercase tracking-widest">Contracts</div>
-</div>
+      <h3 class="text-3xl font-headline font-bold mb-8">
+        Estado del Proyecto
+      </h3>
 
-<div class="glass-card p-4 rounded-xl border border-[#343344]/40">
-<div class="text-primary font-headline text-2xl font-bold">DAO</div>
-<div class="text-textSoft text-[10px] uppercase tracking-widest">Governance</div>
-</div>
+      <div class="space-y-5">
 
-</div>
+        <div class="bg-black/20 rounded-2xl p-5 flex justify-between items-center">
+          <span class="text-muted">Red de pruebas</span>
+          <span class="text-primary font-bold">Sepolia</span>
+        </div>
 
-</div>
+        <div class="bg-black/20 rounded-2xl p-5 flex justify-between items-center">
+          <span class="text-muted">Smart Contracts</span>
+          <span class="text-green-400 font-bold">Deployados ✓</span>
+        </div>
 
-<!-- RIGHT -->
+        <div class="bg-black/20 rounded-2xl p-5 flex justify-between items-center">
+          <span class="text-muted">Staking dApp</span>
+          <span class="text-yellow-300 font-bold">Beta</span>
+        </div>
 
-<div class="glass-card p-8 rounded-3xl border border-primary/20 shadow-2xl relative" id="presale">
+        <div class="bg-black/20 rounded-2xl p-5 flex justify-between items-center">
+          <span class="text-muted">Mainnet</span>
+          <span class="text-white font-bold">Pendiente</span>
+        </div>
 
-<div class="absolute -top-12 -right-12 w-64 h-64 bg-secondary/5 blur-[80px] -z-10"></div>
+      </div>
 
-<h3 class="text-center text-primary font-headline text-xl font-medium mb-8">
-Estado del Proyecto
-</h3>
+      <div class="mt-8 glass rounded-2xl p-6">
 
-<div class="space-y-6">
+        <div class="flex justify-between items-center mb-4">
+          <h4 class="font-bold text-lg">Bots de Trading</h4>
+          <span class="text-primary font-bold">2 Sistemas</span>
+        </div>
 
-<div class="p-5 rounded-2xl bg-[#1a1a2a] border border-[#343344]">
-<div class="flex justify-between mb-2">
-<span class="text-textSoft text-sm">Red de pruebas</span>
-<span class="text-primary font-bold">Sepolia</span>
-</div>
-</div>
+        <ul class="space-y-3 text-sm text-muted leading-relaxed">
+          <li>• Bot conectado a Binance ejecutándose sobre Ubuntu.</li>
+          <li>• Bot conectado a MetaTrader en Windows 11.</li>
+          <li>• Infraestructura experimental enfocada en automatización financiera.</li>
+        </ul>
 
-<div class="p-5 rounded-2xl bg-[#1a1a2a] border border-[#343344]">
-<div class="flex justify-between mb-2">
-<span class="text-textSoft text-sm">Smart Contracts</span>
-<span class="text-green-400 font-bold">Deployados ✓</span>
-</div>
-</div>
+      </div>
 
-<div class="p-5 rounded-2xl bg-[#1a1a2a] border border-[#343344]">
-<div class="flex justify-between mb-2">
-<span class="text-textSoft text-sm">Staking dApp</span>
-<span class="text-yellow-300 font-bold">Beta</span>
-</div>
-</div>
+    </div>
 
-<div class="p-5 rounded-2xl bg-[#1a1a2a] border border-[#343344]">
-<div class="flex justify-between mb-2">
-<span class="text-textSoft text-sm">Mainnet</span>
-<span class="text-textSoft font-bold">Pendiente</span>
-</div>
-</div>
-
-</div>
-
-<div class="mt-10 p-6 bg-primary/5 rounded-2xl border border-primary/10">
-
-<div class="flex justify-between items-center mb-3">
-<span class="text-textSoft text-sm">Bots de Trading</span>
-<span class="text-primary font-bold">2 Sistemas</span>
-</div>
-
-<p class="text-sm text-textSoft leading-relaxed">
-Actualmente existen dos bots internos en fase de pruebas:
-<br><br>
-• Bot conectado a Binance ejecutándose sobre Ubuntu.
-<br>
-• Bot conectado a MetaTrader en Windows 11.
-<br><br>
-Ambos forman parte del ecosistema experimental de automatización financiera de Nextia.
-</p>
-
-</div>
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
 <!-- FEATURES -->
+<section id="ecosistema" class="py-28">
 
-<section class="py-24 bg-[#151524]" id="features">
+  <div class="max-w-7xl mx-auto px-6">
 
-<div class="max-w-7xl mx-auto px-8">
+    <div class="text-center mb-20">
+      <h2 class="font-headline text-5xl font-bold mb-6">
+        Un ecosistema que sí se siente vivo
+      </h2>
 
-<div class="text-center mb-20">
+      <p class="text-muted max-w-3xl mx-auto text-lg leading-relaxed">
+        No es otra landing vacía prometiendo Lambos en 3 días.
+        Nextia está construido alrededor de pruebas reales, automatización,
+        desarrollo activo y una comunidad conectada directamente desde Telegram.
+      </p>
+    </div>
 
-<h2 class="text-4xl md:text-5xl font-headline font-bold text-white mb-6">
-Infraestructura Nextia
-</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-<p class="text-textSoft max-w-2xl mx-auto">
-Tecnología Web3 enfocada en transparencia, automatización y experimentación real sobre Ethereum.
-</p>
+      <div class="glass card-hover rounded-[2rem] p-8">
+        <h3 class="font-headline text-2xl font-bold mb-4">
+          Smart Contracts ERC20
+        </h3>
 
-</div>
+        <p class="text-muted leading-relaxed">
+          Contratos desarrollados y probados sobre Ethereum Sepolia con suites
+          automatizadas de seguridad y validación.
+        </p>
+      </div>
 
-<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="glass card-hover rounded-[2rem] p-8">
+        <h3 class="font-headline text-2xl font-bold mb-4">
+          DAO Governance
+        </h3>
 
-<div class="glass-card p-10 rounded-[2rem] border border-[#343344]/30">
-<div class="text-4xl mb-6">🔒</div>
-<h3 class="text-2xl font-headline font-bold mb-4">Smart Contracts</h3>
-<p class="text-textSoft leading-relaxed">
-Contratos ERC20, staking y gobernanza desplegados en Sepolia y verificados públicamente.
-</p>
-</div>
+        <p class="text-muted leading-relaxed">
+          La visión es evolucionar hacia gobernanza descentralizada real
+          donde holders puedan participar en decisiones clave del ecosistema.
+        </p>
+      </div>
 
-<div class="glass-card p-10 rounded-[2rem] border border-[#343344]/30">
-<div class="text-4xl mb-6">⚡</div>
-<h3 class="text-2xl font-headline font-bold mb-4">Staking dApp</h3>
-<p class="text-textSoft leading-relaxed">
-Interfaz conectada a contratos reales para pruebas funcionales de staking.
-</p>
-</div>
+      <div class="glass card-hover rounded-[2rem] p-8">
+        <h3 class="font-headline text-2xl font-bold mb-4">
+          Trading Automation
+        </h3>
 
-<div class="glass-card p-10 rounded-[2rem] border border-[#343344]/30">
-<div class="text-4xl mb-6">🧠</div>
-<h3 class="text-2xl font-headline font-bold mb-4">Trading Bots</h3>
-<p class="text-textSoft leading-relaxed">
-Automatización experimental para mercados crypto y forex utilizando Binance y MetaTrader.
-</p>
-</div>
+        <p class="text-muted leading-relaxed">
+          Bots experimentales conectados a infraestructura financiera
+          ejecutando estrategias automatizadas en tiempo real.
+        </p>
+      </div>
 
-<div class="glass-card p-10 rounded-[2rem] border border-[#343344]/30">
-<div class="text-4xl mb-6">🗳️</div>
-<h3 class="text-2xl font-headline font-bold mb-4">DAO Governance</h3>
-<p class="text-textSoft leading-relaxed">
-Sistema inicial de gobernanza para futuras propuestas y decisiones del ecosistema.
-</p>
-</div>
+      <div class="glass card-hover rounded-[2rem] p-8">
+        <h3 class="font-headline text-2xl font-bold mb-4">
+          Staking dApp
+        </h3>
 
-<div class="glass-card p-10 rounded-[2rem] border border-[#343344]/30">
-<div class="text-4xl mb-6">📊</div>
-<h3 class="text-2xl font-headline font-bold mb-4">Testing Interno</h3>
-<p class="text-textSoft leading-relaxed">
-33 pruebas automatizadas completadas sobre seguridad, gas y funciones principales.
-</p>
-</div>
+        <p class="text-muted leading-relaxed">
+          Interfaz en fase beta para staking y futura integración
+          de utilidades DeFi dentro del ecosistema.
+        </p>
+      </div>
 
-<div class="glass-card p-10 rounded-[2rem] border border-[#343344]/30">
-<div class="text-4xl mb-6">🌐</div>
-<h3 class="text-2xl font-headline font-bold mb-4">Comunidad</h3>
-<p class="text-textSoft leading-relaxed">
-Actualizaciones continuas vía Telegram, GitHub y canales oficiales del proyecto.
-</p>
-</div>
+      <div class="glass card-hover rounded-[2rem] p-8">
+        <h3 class="font-headline text-2xl font-bold mb-4">
+          Arquitectura Modular
+        </h3>
 
-</div>
+        <p class="text-muted leading-relaxed">
+          Base preparada para expansión multi-chain, automatización avanzada
+          e integración con nuevas herramientas Web3.
+        </p>
+      </div>
 
-</div>
+      <div class="glass card-hover rounded-[2rem] p-8">
+        <h3 class="font-headline text-2xl font-bold mb-4">
+          Comunidad Directa
+        </h3>
+
+        <p class="text-muted leading-relaxed">
+          Todo el acceso y comunicación se concentra directamente desde Telegram,
+          evitando funnels falsos y spam innecesario.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
 
 </section>
 
 <!-- TOKENOMICS -->
+<section id="tokenomics" class="py-28 bg-[#0d0d1a]">
 
-<section class="py-24" id="tokenomics">
+  <div class="max-w-6xl mx-auto px-6">
 
-<div class="max-w-7xl mx-auto px-8">
+    <div class="text-center mb-16">
+      <h2 class="font-headline text-5xl font-bold mb-4">
+        Tokenomics
+      </h2>
 
-<div class="text-center mb-16">
+      <p class="text-muted">
+        Distribución actual del supply experimental de NXT.
+      </p>
+    </div>
 
-<h2 class="text-5xl font-headline font-bold mb-6">
-Tokenomics
-</h2>
+    <div class="glass rounded-[2rem] overflow-hidden">
 
-<p class="text-textSoft">
-Distribución inicial propuesta para el ecosistema NXT.
-</p>
+      <table class="w-full">
 
-</div>
+        <thead class="bg-white/5 text-left">
+          <tr>
+            <th class="p-6">Distribución</th>
+            <th class="p-6">Porcentaje</th>
+            <th class="p-6">Tokens</th>
+          </tr>
+        </thead>
 
-<div class="glass-card rounded-3xl border border-[#343344]/30 overflow-hidden">
+        <tbody class="divide-y divide-white/5">
 
-<table class="w-full text-left">
+          <tr>
+            <td class="p-6">Public Sale</td>
+            <td class="p-6">45%</td>
+            <td class="p-6">450,000</td>
+          </tr>
 
-<thead class="bg-[#1e1e2e] uppercase text-xs tracking-widest">
+          <tr>
+            <td class="p-6">Liquidity</td>
+            <td class="p-6">25%</td>
+            <td class="p-6">250,000</td>
+          </tr>
 
-<tr>
-<th class="p-6">Distribución</th>
-<th class="p-6">Porcentaje</th>
-<th class="p-6">NXT</th>
-</tr>
+          <tr>
+            <td class="p-6">Staking Rewards</td>
+            <td class="p-6">15%</td>
+            <td class="p-6">150,000</td>
+          </tr>
 
-</thead>
+          <tr>
+            <td class="p-6">Development</td>
+            <td class="p-6">10%</td>
+            <td class="p-6">100,000</td>
+          </tr>
 
-<tbody class="divide-y divide-[#343344]/30 text-sm">
+          <tr>
+            <td class="p-6">Ecosystem Fund</td>
+            <td class="p-6">5%</td>
+            <td class="p-6">50,000</td>
+          </tr>
 
-<tr>
-<td class="p-6">Public Ecosystem</td>
-<td class="p-6">45%</td>
-<td class="p-6">450,000</td>
-</tr>
+        </tbody>
 
-<tr>
-<td class="p-6">Liquidity</td>
-<td class="p-6">25%</td>
-<td class="p-6">250,000</td>
-</tr>
+      </table>
 
-<tr>
-<td class="p-6">Staking Rewards</td>
-<td class="p-6">15%</td>
-<td class="p-6">150,000</td>
-</tr>
+    </div>
 
-<tr>
-<td class="p-6">Development</td>
-<td class="p-6">10%</td>
-<td class="p-6">100,000</td>
-</tr>
-
-<tr>
-<td class="p-6">Ecosystem Fund</td>
-<td class="p-6">5%</td>
-<td class="p-6">50,000</td>
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
 <!-- ROADMAP -->
+<section id="roadmap" class="py-28">
 
-<section class="py-24 bg-[#151524]" id="roadmap">
+  <div class="max-w-5xl mx-auto px-6">
 
-<div class="max-w-6xl mx-auto px-8">
+    <div class="text-center mb-20">
+      <h2 class="font-headline text-5xl font-bold mb-6">
+        Roadmap
+      </h2>
 
-<div class="text-center mb-16">
+      <p class="text-muted text-lg">
+        Construyendo capa por capa. Como una ciudad cyberpunk sobre Ethereum.
+      </p>
+    </div>
 
-<h2 class="text-5xl font-headline font-bold mb-4">
-Roadmap
-</h2>
+    <div class="space-y-6">
 
-<p class="text-textSoft">
-Construyendo capa por capa. Como una ciudad cyberpunk sobre Ethereum.
-</p>
+      <div class="glass rounded-[2rem] p-8">
+        <h3 class="font-headline text-3xl font-bold mb-3 text-primary">
+          2025 — Arquitectura y Desarrollo
+        </h3>
 
-</div>
+        <p class="text-muted">
+          Creación de contratos ERC20, staking y DAO.
+          Desarrollo inicial del ecosistema y pruebas automatizadas.
+        </p>
+      </div>
 
-<div class="space-y-5">
+      <div class="glass rounded-[2rem] p-8">
+        <h3 class="font-headline text-3xl font-bold mb-3 text-primary">
+          2026 — Expansión de Plataforma
+        </h3>
 
-<div class="glass-card p-6 rounded-2xl border border-[#343344]/30">
-<h3 class="text-primary font-bold text-xl mb-2">2025 — Arquitectura y Desarrollo</h3>
-<p class="text-textSoft">
-Creación de contratos ERC20, staking y DAO. Desarrollo inicial del ecosistema y pruebas automatizadas.
-</p>
-</div>
+        <p class="text-muted">
+          Optimización de dApps, integración de herramientas automatizadas
+          y fortalecimiento comunitario.
+        </p>
+      </div>
 
-<div class="glass-card p-6 rounded-2xl border border-[#343344]/30">
-<h3 class="text-primary font-bold text-xl mb-2">2026 — Expansión de Plataforma</h3>
-<p class="text-textSoft">
-Optimización de dApps, integración de herramientas automatizadas y fortalecimiento comunitario.
-</p>
-</div>
+      <div class="glass rounded-[2rem] p-8">
+        <h3 class="font-headline text-3xl font-bold mb-3 text-primary">
+          Futuro
+        </h3>
 
-<div class="glass-card p-6 rounded-2xl border border-[#343344]/30">
-<h3 class="text-primary font-bold text-xl mb-2">Futuro</h3>
-<p class="text-textSoft">
-Exploración de integraciones multi-chain, automatización avanzada y productos DeFi experimentales.
-</p>
-</div>
+        <p class="text-muted">
+          Exploración de integraciones multi-chain,
+          automatización avanzada y productos DeFi experimentales.
+        </p>
+      </div>
 
-</div>
+    </div>
 
-</div>
+  </div>
 
 </section>
 
-<!-- WHITELIST -->
+<!-- AUDIT -->
+<section id="audit" class="py-28 bg-[#0d0d1a]">
 
-<section class="py-24 relative overflow-hidden" id="community">
+  <div class="max-w-6xl mx-auto px-6">
 
-<div class="max-w-4xl mx-auto px-8 relative">
+    <div class="text-center mb-20">
+      <h2 class="font-headline text-5xl font-bold mb-5">
+        Reporte de Auditoría
+      </h2>
 
-<div class="glass-card p-12 rounded-[3rem] border border-primary/20 text-center">
+      <p class="text-muted">
+        Resultados reales de pruebas automatizadas del ecosistema Nextia.
+      </p>
+    </div>
 
-<h2 class="text-4xl font-headline font-bold mb-4">
-Únete a la Comunidad
-</h2>
+    <div class="grid md:grid-cols-4 gap-6">
 
-<p class="text-textSoft mb-10">
-Recibe actualizaciones del desarrollo, staking y avances de los bots del ecosistema Nextia.
-</p>
+      <div class="glass rounded-3xl p-8 text-center">
+        <div class="text-5xl font-bold text-green-400 font-headline">33</div>
+        <div class="text-muted uppercase text-xs tracking-[.2em] mt-3">
+          Tests Pasados
+        </div>
+      </div>
 
-<form action="https://formspree.io/f/REEMPLAZA_AQUI" class="space-y-4" method="POST">
+      <div class="glass rounded-3xl p-8 text-center">
+        <div class="text-5xl font-bold text-primary font-headline">4</div>
+        <div class="text-muted uppercase text-xs tracking-[.2em] mt-3">
+          Suites
+        </div>
+      </div>
 
-<div class="grid md:grid-cols-2 gap-4">
+      <div class="glass rounded-3xl p-8 text-center">
+        <div class="text-5xl font-bold text-pink-400 font-headline">0</div>
+        <div class="text-muted uppercase text-xs tracking-[.2em] mt-3">
+          Errores
+        </div>
+      </div>
 
-<input class="bg-[#1a1a2a] border border-[#343344] text-white rounded-2xl py-4 px-6 outline-none"
-name="name"
-placeholder="Nombre completo"
-required
-type="text"/>
+      <div class="glass rounded-3xl p-8 text-center">
+        <div class="text-5xl font-bold text-yellow-300 font-headline">278ms</div>
+        <div class="text-muted uppercase text-xs tracking-[.2em] mt-3">
+          Duración
+        </div>
+      </div>
 
-<input class="bg-[#1a1a2a] border border-[#343344] text-white rounded-2xl py-4 px-6 outline-none"
-name="email"
-placeholder="Correo electrónico"
-required
-type="email"/>
+    </div>
 
-</div>
+  </div>
 
-<input class="w-full bg-[#1a1a2a] border border-[#343344] text-white rounded-2xl py-4 px-6 outline-none"
-name="telegram"
-placeholder="Usuario Telegram"
-required
-type="text"/>
+</section>
 
-<button class="w-full bg-primary text-black font-bold py-5 rounded-2xl hover:scale-[1.01] transition-all uppercase tracking-widest"
-type="submit">
-Solicitar Acceso
-</button>
+<!-- CTA TELEGRAM -->
+<section class="py-28 relative overflow-hidden">
 
-</form>
+  <div class="absolute inset-0 bg-gradient-to-r from-[#5865ff22] to-[#ff4d8022] blur-3xl"></div>
 
-<div class="mt-10 text-sm text-textSoft space-y-2">
+  <div class="max-w-4xl mx-auto px-6 relative">
 
-<p>📩 joregesensei@nextiamarketing.com</p>
-<p>📩 nextiacorp33@gmail.com</p>
+    <div class="glass rounded-[3rem] p-14 text-center border border-white/10">
 
-</div>
+      <h2 class="font-headline text-5xl font-bold mb-6">
+        Entra al núcleo de Nextia
+      </h2>
 
-</div>
+      <p class="text-muted text-lg leading-relaxed max-w-2xl mx-auto">
+        Desarrollo activo, pruebas reales, automatización,
+        avances del ecosistema y acceso directo desde Telegram.
+      </p>
 
-</div>
+      <a
+        href="https://t.me/NextiaTokenBot"
+        target="_blank"
+        class="inline-block telegram-button mt-10 px-12 py-6 rounded-3xl font-bold text-xl transition-all duration-300"
+      >
+        Abrir Bot de Telegram
+      </a>
+
+    </div>
+
+  </div>
 
 </section>
 
 <!-- FOOTER -->
+<footer class="border-t border-white/5 py-10">
 
-<footer class="bg-[#121221] py-12 border-t border-[#343344]/30">
+  <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
 
-<div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto px-8 gap-6">
+    <div class="flex items-center gap-3">
+      <span class="text-2xl">🪙</span>
+      <span class="font-headline font-bold tracking-widest text-primary">
+        NEXTIA TOKEN
+      </span>
+    </div>
 
-<div>
-<a class="text-xl font-bold text-primary font-headline tracking-widest uppercase" href="#">
-NXT
-</a>
-</div>
+    <div class="flex gap-8 text-sm uppercase tracking-[.2em] text-muted">
 
-<div class="flex gap-8">
+      <a href="https://t.me/NextiaTokenBot" target="_blank" class="hover:text-white transition">
+        Telegram
+      </a>
 
-<a class="text-textSoft hover:text-secondary transition-colors"
-href="https://t.me/NextiaToken"
-target="_blank">
-Telegram
-</a>
+      <a href="https://github.com/NextiaSensei/NextiaToken" target="_blank" class="hover:text-white transition">
+        GitHub
+      </a>
 
-<a class="text-textSoft hover:text-secondary transition-colors"
-href="https://github.com/NextiaSensei/NextiaToken"
-target="_blank">
-GitHub
-</a>
+    </div>
 
-</div>
+    <p class="text-muted text-sm">
+      © 2026 Nextia Protocol • Ethereum Experimental Ecosystem
+    </p>
 
-<p class="text-sm text-textSoft opacity-80">
-© 2026 Nextia Ecosystem — Built on Ethereum.
-</p>
-
-</div>
+  </div>
 
 </footer>
 
 <script>
 
-window.onscroll = function () {
+window.addEventListener("scroll", () => {
 
-const nav = document.querySelector('nav');
+  const nav = document.querySelector("nav");
 
-if (window.scrollY > 50) {
+  if(window.scrollY > 40){
+    nav.classList.add("shadow-2xl");
+  } else {
+    nav.classList.remove("shadow-2xl");
+  }
 
-nav.classList.add('bg-[#121221]/95');
-nav.classList.remove('bg-[#121221]/80');
-
-} else {
-
-nav.classList.add('bg-[#121221]/80');
-nav.classList.remove('bg-[#121221]/95');
-
-}
-
-};
+});
 
 </script>
 
