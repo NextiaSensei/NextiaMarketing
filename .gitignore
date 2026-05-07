@@ -1,5 +1,11 @@
-node_modules/
+node_modules
 .env
+venv
+automation/venv
+dist
 venv/
-__pycache__/
+automation/venv/
+.env
+__pycache__/build
+.cache
 .DS_Store
