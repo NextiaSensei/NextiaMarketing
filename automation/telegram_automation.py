@@ -7,6 +7,10 @@ from datetime import datetime
 from telebot import types
 from dotenv import load_dotenv
 
+# ─────────────────────────────────────────
+# LOAD ENV
+# ─────────────────────────────────────────
+
 load_dotenv()
 
 BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
@@ -16,381 +20,508 @@ WEB1 = os.getenv("WEBSITE_1")
 WEB2 = os.getenv("WEBSITE_2")
 WEB3 = os.getenv("WEBSITE_3")
 
-bot = telebot.TeleBot(BOT_TOKEN)
+if not BOT_TOKEN:
+    raise ValueError("❌ TELEGRAM_BOT_TOKEN no encontrado en .env")
+
+if not CHANNEL_ID:
+    raise ValueError("❌ TELEGRAM_CHANNEL_ID no encontrado en .env")
+
+bot = telebot.TeleBot(BOT_TOKEN, parse_mode="Markdown")
 
 # ─────────────────────────────────────────
-# MENSAJES DEL ECOSISTEMA
+# MENSAJES OPTIMIZADOS
 # ─────────────────────────────────────────
 
 MSG = {
+
     "presale": f"""
 🚀 *NEXTIA TOKEN — PRESALE TIER 1*
 
-📊 Supply Total: *1,000,000 NXT*
-💰 APY Staking: *20% anual*
-✅ Smart Contracts: *16/16 Tests Pasando*
-🔐 Auditado: NextiaData
-🌐 Red: *Sepolia Testnet → Mainnet próximamente*
+━━━━━━━━━━━━━━━━━━━
+⚡ *Estado actual*
+• ERC-20 desplegado en Sepolia
+• Smart Contracts funcionando
+• 16/16 Tests pasando ✅
+• Preparación para Ethereum Mainnet
 
-━━━━━━━━━━━━━━━━━━━━
-💡 ¿Por qué entrar en Fase 1?
-• Precio de entrada más bajo del ciclo
-• Acceso prioritario al ecosistema completo
-• Participación en gobernanza DAO
+━━━━━━━━━━━━━━━━━━━
+🌐 *¿Qué es Nextia?*
 
-🔗 Únete ahora: [nextia-marketing.vercel.app](https://nextia-marketing.vercel.app)
-🔗 TokenLab: {WEB2}
+Nextia es un ecosistema Web3 enfocado en:
 
-📧 {EMAIL}
+🤖 Trading Bots IA  
+🧪 Herramientas para creación de tokens  
+📊 Simuladores DeFi  
+🏛️ Gobernanza DAO  
+💎 Infraestructura escalable para builders
+
+━━━━━━━━━━━━━━━━━━━
+🎯 *Objetivo de la Presale*
+
+Construir liquidez sólida, desarrollo sostenible
+y expansión del ecosistema.
+
+━━━━━━━━━━━━━━━━━━━
+🔗 Presale:
+{WEB1}
+
+🔗 Ecosistema:
+{WEB2}
+
+📂 GitHub:
+https://github.com/NextiaSensei
+
+📧 Contacto:
+{EMAIL}
 """,
 
     "ecosistema": f"""
-🌐 *ECOSISTEMA NEXTIA TOKEN*
+🌐 *ECOSISTEMA NEXTIA*
 
-El ecosistema está compuesto por 4 pilares:
-
+━━━━━━━━━━━━━━━━━━━
 1️⃣ *NXT Token (ERC-20)*
-   Smart contracts auditados en Sepolia
-   Listo para mainnet
 
-2️⃣ *Staking & Gobernanza*
-   20% APY · Sin lock-up · Rewards por bloque
-   Votación descentralizada activa
+• Contratos desplegados
+• Tests completados
+• Arquitectura preparada para Mainnet
 
-3️⃣ *TokenLab*
-   Plataforma para crear y lanzar tokens propios
-   Con simulador de inversión integrado
+━━━━━━━━━━━━━━━━━━━
+2️⃣ *TokenLab*
 
-4️⃣ *Trading Bots IA*
-   Bot activo en MetaTrader 5 + Binance
-   *+5 meses de datos reales en demo*
-   Peak: $8,929 | Ganancia: $128.91
+Herramientas para:
 
-🔗 Explorar: {WEB2}
-📂 GitHub: [NextiaSensei](https://github.com/NextiaSensei)
+🧪 Simular inversión  
+🔧 Crear proyectos Web3  
+🚀 Escalar ecosistemas digitales
+
+━━━━━━━━━━━━━━━━━━━
+3️⃣ *Trading Bots IA*
+
+Bots conectados a:
+
+📈 MetaTrader 5  
+📊 Binance  
+⚙️ Estrategias algorítmicas
+
+Con meses de pruebas y optimización.
+
+━━━━━━━━━━━━━━━━━━━
+4️⃣ *Gobernanza DAO*
+
+La visión es migrar hacia decisiones
+más descentralizadas y transparentes.
+
+━━━━━━━━━━━━━━━━━━━
+🔗 Explorar:
+{WEB2}
 """,
 
-    "trading_bot": """
-🤖 *REPORTE: TRADING BOT NEXTIA*
+    "trading_bot": f"""
+🤖 *NEXTIA TRADING BOTS*
 
-📅 Período de prueba: *+5 meses*
-⚙️ Plataformas: MetaTrader 5 + Binance
+━━━━━━━━━━━━━━━━━━━
+⚙️ Infraestructura actual
 
-📊 *Resultados Demo:*
-• Peak (mejor balance): $8,929.06
-• Ganancia al peak: +$128.91
-• Balance final: $8,207.15
-• Retorno al peak: +1.46%
-• Drawdown máximo: -8.08%
+• MetaTrader 5
+• Binance
+• Automatización algorítmica
+• Backtesting y pruebas demo
 
-✅ *4 símbolos activos*
-✅ *6 operaciones analizadas*
-✅ Datos sin esconder — transparencia total
+━━━━━━━━━━━━━━━━━━━
+📊 Objetivo
 
-🔗 Ver simulador en vivo: tokenlab.nextiamarketing.com/simulador-de-inversion-crypto/
+Construir sistemas de trading:
+
+✅ Escalables  
+✅ Transparentes  
+✅ Basados en datos  
+✅ En mejora continua
+
+━━━━━━━━━━━━━━━━━━━
+📌 Importante
+
+Los resultados históricos NO garantizan
+resultados futuros.
+
+Todo el desarrollo se encuentra en fase
+de investigación y optimización.
+
+━━━━━━━━━━━━━━━━━━━
+🔗 Simulador:
+tokenlab.nextiamarketing.com/simulador-de-inversion-crypto/
+
+🔗 Ecosistema:
+{WEB2}
 """,
 
     "staking": f"""
-💰 *NEXTIA STAKING — DEFI REAL*
+💰 *NEXTIA STAKING*
 
-🎯 APY: *20% anual*
-⏸️ Sin lock-up (retira cuando quieras)
-🔄 Rewards calculados cada bloque
-📊 Sostenible: basado en revenue real del ecosistema
+━━━━━━━━━━━━━━━━━━━
+⚡ El sistema de staking todavía se
+encuentra en desarrollo y validación.
 
-━━━━━━━━━━━━━━━━━━━━
-🧮 *Ejemplo de rendimiento:*
-• $1,000 invertidos → +$200/año
-• $5,000 invertidos → +$1,000/año
-• $10,000 invertidos → +$2,000/año
+No se promete rendimiento fijo.
 
-🔗 Staking live: {WEB2}
-📧 Consultas: {EMAIL}
+━━━━━━━━━━━━━━━━━━━
+🎯 Objetivo del modelo:
+
+• Sostenibilidad
+• Transparencia
+• Recompensas reales
+• Integración con revenue futuro
+
+━━━━━━━━━━━━━━━━━━━
+📌 Filosofía Nextia:
+
+Primero construir infraestructura sólida.
+Después escalar el ecosistema.
+
+━━━━━━━━━━━━━━━━━━━
+🔗 Más información:
+{WEB2}
+
+📧 Contacto:
+{EMAIL}
 """,
 
     "tokenlab": f"""
-🧪 *TOKENLAB — CREA TU PROPIO TOKEN*
+🧪 *TOKENLAB*
 
-TokenLab es la plataforma del ecosistema Nextia para:
+━━━━━━━━━━━━━━━━━━━
+Herramientas Web3 para builders.
 
-🔧 Crear tokens ERC-20 sin código
-📊 Simular rendimientos de inversión
-🚀 Lanzar tu presale paso a paso
-📈 Conectar con bots de trading IA
+━━━━━━━━━━━━━━━━━━━
+⚙️ Roadmap actual
 
-*Roadmap TokenLab:*
-├── ✅ Simulador de Inversión (LIVE)
-├── ✅ Landing Page del Ecosistema (LIVE)
-├── 🔄 Creator de Tokens (Q2 2026)
-└── 🔜 Launchpad Público (Q3 2026)
+✅ Landing del ecosistema  
+✅ Simulador de inversión  
+🔄 Herramientas de automatización  
+🔜 Creator de Tokens  
+🔜 Launchpad
 
-🔗 Explorar ahora: {WEB2}
-📂 Código abierto: [GitHub](https://github.com/NextiaSensei)
+━━━━━━━━━━━━━━━━━━━
+🎯 Visión
+
+Facilitar la creación de proyectos
+crypto sin complicar la experiencia.
+
+━━━━━━━━━━━━━━━━━━━
+🔗 Plataforma:
+{WEB2}
 """,
 
     "noticias_crypto": """
-📰 *CRIPTO NEWS — NEXTIA DIGEST*
+📰 *NEXTIA CRYPTO DIGEST*
 
-💡 El mercado DeFi sigue creciendo:
-• Total Value Locked (TVL) en DeFi supera los $100B
-• Ethereum Sepolia es la testnet más usada para ERC-20
-• Los bots de trading algorítmico ganan terreno en retail
+━━━━━━━━━━━━━━━━━━━
+🌍 Tendencias actuales del mercado:
 
-🎯 *¿Cómo afecta a Nextia Token?*
-Nuestros contratos están en Sepolia y listos para mainnet.
-Los bots de trading llevan +5 meses de pruebas reales.
-Entramos en un momento óptimo del mercado.
+• Crecimiento de herramientas IA
+• Expansión de ecosistemas DeFi
+• Más adopción de automatización
+• Infraestructura Web3 más madura
 
-🔗 Más info: tokenlab.nextiamarketing.com
+━━━━━━━━━━━━━━━━━━━
+📌 En Nextia seguimos construyendo:
+
+⚙️ Tecnología
+📊 Automatización
+🧪 Herramientas
+🌐 Ecosistema
+
+Paso a paso. Sin humo.
 """,
 
     "transparencia": f"""
-🔍 *NEXTIA TOKEN — TRANSPARENCIA TOTAL*
+🔍 *NEXTIA — TRANSPARENCIA*
 
-No escondemos nada. Aquí los datos reales:
+━━━━━━━━━━━━━━━━━━━
+📌 Lo que sí existe hoy:
 
-✅ Smart Contracts: 16/16 tests pasando
-✅ Código abierto en GitHub
-✅ Bot de trading: datos demo públicos
-✅ Drawdown real publicado (-8.08%)
-✅ Whitepaper completo disponible
+✅ Smart Contracts en Sepolia  
+✅ Código abierto  
+✅ Tests automatizados  
+✅ Bots en pruebas demo  
+✅ Landing y simuladores funcionales
 
-📂 Revisa todo tú mismo:
-• GitHub: [NextiaSensei](https://github.com/NextiaSensei)
-• Simulador: tokenlab.nextiamarketing.com/simulador-de-inversion-crypto/
-• Ecosistema: {WEB2}
+━━━━━━━━━━━━━━━━━━━
+📂 GitHub:
+https://github.com/NextiaSensei
 
-📧 Preguntas directas: {EMAIL}
+🔗 Ecosistema:
+{WEB2}
+
+📧 Contacto:
+{EMAIL}
 """,
 
     "comunidad": f"""
-👥 *ÚNETE A LA COMUNIDAD NEXTIA*
+👥 *COMUNIDAD NEXTIA*
 
-Somos builders, no solo inversores:
+━━━━━━━━━━━━━━━━━━━
+No buscamos solo holders.
 
-🤝 ¿Qué puedes hacer aquí?
-• Invertir en Presale Tier 1
-• Participar en gobernanza DAO
-• Contribuir al código (GitHub abierto)
-• Usar TokenLab para tu propio proyecto
-• Seguir el desarrollo de los trading bots
+Buscamos builders ⚡
 
-📣 Canales oficiales:
-• Telegram: este canal
-• Discord: [discord.gg/PtWWkpfC](https://discord.gg/PtWWkpfC)
-• GitHub: [NextiaSensei](https://github.com/NextiaSensei)
+━━━━━━━━━━━━━━━━━━━
+Puedes participar como:
 
-🔗 Ecosistema: {WEB2}
-📧 Email: {EMAIL}
+💻 Developer  
+📈 Trader  
+🎨 Diseñador  
+📢 Marketer  
+🧠 Estratega  
+🚀 Inversionista
+
+━━━━━━━━━━━━━━━━━━━
+📣 Canales oficiales
+
+Telegram:
+Este canal
+
+Discord:
+https://discord.gg/PtWWkpfC
+
+GitHub:
+https://github.com/NextiaSensei
+
+━━━━━━━━━━━━━━━━━━━
+🌐 Ecosistema:
+{WEB2}
 """
 }
 
 # ─────────────────────────────────────────
-# MENÚ PRINCIPAL CON INLINE BUTTONS
+# MENU
 # ─────────────────────────────────────────
 
 def menu_principal():
+
     markup = types.InlineKeyboardMarkup(row_width=2)
-    markup.add(
-        types.InlineKeyboardButton("🚀 Presale Info", callback_data="presale"),
+
+    buttons = [
+        types.InlineKeyboardButton("🚀 Presale", callback_data="presale"),
         types.InlineKeyboardButton("🌐 Ecosistema", callback_data="ecosistema"),
-        types.InlineKeyboardButton("🤖 Trading Bot", callback_data="trading_bot"),
+
+        types.InlineKeyboardButton("🤖 Trading Bots", callback_data="trading_bot"),
         types.InlineKeyboardButton("💰 Staking", callback_data="staking"),
+
         types.InlineKeyboardButton("🧪 TokenLab", callback_data="tokenlab"),
-        types.InlineKeyboardButton("📰 Cripto News", callback_data="noticias_crypto"),
+        types.InlineKeyboardButton("📰 Crypto News", callback_data="noticias_crypto"),
+
         types.InlineKeyboardButton("🔍 Transparencia", callback_data="transparencia"),
         types.InlineKeyboardButton("👥 Comunidad", callback_data="comunidad"),
-        types.InlineKeyboardButton("🔗 Ir al TokenLab", url=WEB2),
+
+        types.InlineKeyboardButton("🌐 Web", url=WEB2),
         types.InlineKeyboardButton("📂 GitHub", url="https://github.com/NextiaSensei")
-    )
+    ]
+
+    markup.add(*buttons)
+
     return markup
 
 # ─────────────────────────────────────────
-# HANDLERS DE COMANDOS
+# START
 # ─────────────────────────────────────────
 
 @bot.message_handler(commands=['start', 'menu'])
 def start(message):
-    text = """
-👋 *Bienvenido al Bot Oficial de Nextia Token*
 
-Soy tu guía completo del ecosistema. Aquí encontrarás:
+    text = f"""
+👋 *Bienvenido al Ecosistema Nextia*
 
-🚀 Info de Presale Tier 1
-🌐 Todo sobre el Ecosistema Nextia
-🤖 Resultados de los Trading Bots IA
-💰 Staking con 20% APY
-🧪 TokenLab — crea tu propio token
-📰 Noticias del mundo crypto
-🔍 Datos transparentes y verificables
+Construyendo herramientas Web3,
+automatización e infraestructura crypto.
 
-Selecciona una opción:
+━━━━━━━━━━━━━━━━━━━
+Selecciona una sección:
 """
-    bot.send_message(message.chat.id, text, parse_mode="Markdown", reply_markup=menu_principal())
+
+    bot.send_message(
+        message.chat.id,
+        text,
+        reply_markup=menu_principal()
+    )
+
+# ─────────────────────────────────────────
+# COMMANDS
+# ─────────────────────────────────────────
 
 @bot.message_handler(commands=['presale'])
-def cmd_presale(message):
-    bot.send_message(message.chat.id, MSG["presale"], parse_mode="Markdown")
+def presale(message):
+    bot.send_message(message.chat.id, MSG["presale"])
 
 @bot.message_handler(commands=['ecosistema'])
-def cmd_ecosistema(message):
-    bot.send_message(message.chat.id, MSG["ecosistema"], parse_mode="Markdown")
+def ecosistema(message):
+    bot.send_message(message.chat.id, MSG["ecosistema"])
 
 @bot.message_handler(commands=['trading'])
-def cmd_trading(message):
-    bot.send_message(message.chat.id, MSG["trading_bot"], parse_mode="Markdown")
+def trading(message):
+    bot.send_message(message.chat.id, MSG["trading_bot"])
 
 @bot.message_handler(commands=['staking'])
-def cmd_staking(message):
-    bot.send_message(message.chat.id, MSG["staking"], parse_mode="Markdown")
+def staking(message):
+    bot.send_message(message.chat.id, MSG["staking"])
 
 @bot.message_handler(commands=['tokenlab'])
-def cmd_tokenlab(message):
-    bot.send_message(message.chat.id, MSG["tokenlab"], parse_mode="Markdown")
+def tokenlab(message):
+    bot.send_message(message.chat.id, MSG["tokenlab"])
 
 @bot.message_handler(commands=['news'])
-def cmd_news(message):
-    bot.send_message(message.chat.id, MSG["noticias_crypto"], parse_mode="Markdown")
+def news(message):
+    bot.send_message(message.chat.id, MSG["noticias_crypto"])
 
 @bot.message_handler(commands=['transparencia'])
-def cmd_transparencia(message):
-    bot.send_message(message.chat.id, MSG["transparencia"], parse_mode="Markdown")
+def transparencia(message):
+    bot.send_message(message.chat.id, MSG["transparencia"])
 
 @bot.message_handler(commands=['comunidad'])
-def cmd_comunidad(message):
-    bot.send_message(message.chat.id, MSG["comunidad"], parse_mode="Markdown")
+def comunidad(message):
+    bot.send_message(message.chat.id, MSG["comunidad"])
+
+# ─────────────────────────────────────────
+# PUBLICAR
+# ─────────────────────────────────────────
 
 @bot.message_handler(commands=['publicar'])
-def cmd_publicar(message):
-    """Publica el menú completo en el canal"""
-    bot.send_message(CHANNEL_ID, MSG["presale"], parse_mode="Markdown")
-    bot.send_message(message.chat.id, "✅ Presale publicada en el canal!")
+def publicar(message):
 
-@bot.message_handler(commands=['publicar_ecosistema'])
-def cmd_publicar_ecosistema(message):
-    bot.send_message(CHANNEL_ID, MSG["ecosistema"], parse_mode="Markdown")
-    bot.send_message(message.chat.id, "✅ Ecosistema publicado en el canal!")
+    bot.send_message(
+        CHANNEL_ID,
+        MSG["presale"]
+    )
 
-@bot.message_handler(commands=['publicar_trading'])
-def cmd_publicar_trading(message):
-    bot.send_message(CHANNEL_ID, MSG["trading_bot"], parse_mode="Markdown")
-    bot.send_message(message.chat.id, "✅ Reporte trading publicado!")
+    bot.send_message(
+        message.chat.id,
+        "✅ Publicación enviada al canal"
+    )
 
-@bot.message_handler(commands=['custom'])
-def cmd_custom(message):
-    text = message.text.replace('/custom ', '', 1).strip()
-    if text:
-        bot.send_message(CHANNEL_ID, text, parse_mode="Markdown")
-        bot.send_message(message.chat.id, f"✅ Publicado en canal: {text[:50]}...")
-    else:
-        bot.send_message(message.chat.id, "❌ Uso: /custom Tu mensaje en *Markdown*")
+# ─────────────────────────────────────────
+# ESTADO
+# ─────────────────────────────────────────
 
 @bot.message_handler(commands=['estado'])
-def cmd_estado(message):
+def estado(message):
+
     ahora = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
     text = f"""
 ⚙️ *ESTADO DEL SISTEMA*
 
-🟢 Bot: Activo
-📅 Fecha: {ahora}
-🌐 TokenLab: {WEB2}
-🌐 Presale: {WEB1}
-📧 Email: {EMAIL}
-🔗 GitHub: github.com/NextiaSensei
+━━━━━━━━━━━━━━━━━━━
+🟢 Bot activo
 
-*Smart Contracts:* 16/16 ✅
-*Red actual:* Sepolia Testnet
-*Trading Bot:* +5 meses datos
+📅 Fecha:
+{ahora}
+
+🌐 WEB:
+{WEB2}
+
+📂 GitHub:
+https://github.com/NextiaSensei
+
+━━━━━━━━━━━━━━━━━━━
+✅ Smart Contracts operativos
+✅ Tests funcionando
+✅ Scheduler activo
 """
-    bot.send_message(message.chat.id, text, parse_mode="Markdown")
 
-@bot.message_handler(commands=['help'])
-def cmd_help(message):
-    text = """
-📚 *COMANDOS DISPONIBLES*
-
-*Información:*
-/menu — Menú interactivo completo
-/presale — Info Presale Tier 1
-/ecosistema — El ecosistema Nextia
-/trading — Reporte Trading Bot IA
-/staking — Info Staking 20% APY
-/tokenlab — Plataforma TokenLab
-/news — Noticias crypto
-/transparencia — Datos verificables
-/comunidad — Cómo unirte
-/estado — Estado del sistema
-
-*Publicar en canal:*
-/publicar — Publica presale en canal
-/publicar_ecosistema — Publica ecosistema
-/publicar_trading — Publica reporte bot
-/custom [texto] — Mensaje personalizado
-
-*Links directos:*
-/web1 — Presale oficial
-/web2 — TokenLab
-/web3 — ShopLab
-"""
-    bot.send_message(message.chat.id, text, parse_mode="Markdown")
-
-@bot.message_handler(commands=['web1'])
-def cmd_web1(message):
-    bot.send_message(message.chat.id, f"🔗 *Presale Oficial:*\n{WEB1}", parse_mode="Markdown")
-
-@bot.message_handler(commands=['web2'])
-def cmd_web2(message):
-    bot.send_message(message.chat.id, f"🔗 *TokenLab & Staking:*\n{WEB2}", parse_mode="Markdown")
-
-@bot.message_handler(commands=['web3'])
-def cmd_web3(message):
-    bot.send_message(message.chat.id, f"🔗 *ShopLab:*\n{WEB3}", parse_mode="Markdown")
+    bot.send_message(message.chat.id, text)
 
 # ─────────────────────────────────────────
-# CALLBACK PARA BOTONES INLINE
+# HELP
+# ─────────────────────────────────────────
+
+@bot.message_handler(commands=['help'])
+def help_command(message):
+
+    text = """
+📚 *COMANDOS*
+
+/menu
+/presale
+/ecosistema
+/trading
+/staking
+/tokenlab
+/news
+/transparencia
+/comunidad
+/estado
+/publicar
+"""
+
+    bot.send_message(message.chat.id, text)
+
+# ─────────────────────────────────────────
+# CALLBACKS
 # ─────────────────────────────────────────
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback_handler(call):
+
     if call.data in MSG:
+
         bot.answer_callback_query(call.id)
-        bot.send_message(call.message.chat.id, MSG[call.data], parse_mode="Markdown")
-    bot.answer_callback_query(call.id)
+
+        bot.send_message(
+            call.message.chat.id,
+            MSG[call.data]
+        )
 
 # ─────────────────────────────────────────
-# PUBLICACIONES AUTOMÁTICAS PROGRAMADAS
+# AUTO PUBLICACIONES
 # ─────────────────────────────────────────
 
 def auto_publish_presale():
-    """Publica presale todos los días a las 9am y 6pm"""
-    bot.send_message(CHANNEL_ID, MSG["presale"], parse_mode="Markdown")
-    print(f"✅ Auto-publicado: Presale — {datetime.now()}")
 
-def auto_publish_trading():
-    """Publica reporte de trading cada lunes"""
-    bot.send_message(CHANNEL_ID, MSG["trading_bot"], parse_mode="Markdown")
-    print(f"✅ Auto-publicado: Trading — {datetime.now()}")
+    bot.send_message(CHANNEL_ID, MSG["presale"])
+
+    print(f"✅ Presale publicada — {datetime.now()}")
 
 def auto_publish_ecosistema():
-    """Publica ecosistema cada miércoles"""
-    bot.send_message(CHANNEL_ID, MSG["ecosistema"], parse_mode="Markdown")
-    print(f"✅ Auto-publicado: Ecosistema — {datetime.now()}")
+
+    bot.send_message(CHANNEL_ID, MSG["ecosistema"])
+
+    print(f"✅ Ecosistema publicado — {datetime.now()}")
+
+def auto_publish_transparencia():
+
+    bot.send_message(CHANNEL_ID, MSG["transparencia"])
+
+    print(f"✅ Transparencia publicada — {datetime.now()}")
 
 def run_scheduler():
+
     schedule.every().day.at("09:00").do(auto_publish_presale)
     schedule.every().day.at("18:00").do(auto_publish_presale)
-    schedule.every().monday.at("10:00").do(auto_publish_trading)
-    schedule.every().wednesday.at("10:00").do(auto_publish_ecosistema)
+
+    schedule.every().monday.at("11:00").do(auto_publish_ecosistema)
+
+    schedule.every().friday.at("12:00").do(auto_publish_transparencia)
+
     while True:
         schedule.run_pending()
         time.sleep(60)
 
-# Corre el scheduler en un hilo separado
-scheduler_thread = threading.Thread(target=run_scheduler, daemon=True)
+# ─────────────────────────────────────────
+# THREAD
+# ─────────────────────────────────────────
+
+scheduler_thread = threading.Thread(
+    target=run_scheduler,
+    daemon=True
+)
+
 scheduler_thread.start()
 
-print("🤖 Bot Nextia Token — VERSIÓN OPTIMIZADA iniciado")
-print(f"📧 Email: {EMAIL}")
-print(f"🌐 Sitios: {WEB1} | {WEB2} | {WEB3}")
-print("📅 Scheduler activo: 09:00, 18:00 diario + lunes/miércoles especiales")
-bot.infinity_polling()
+# ─────────────────────────────────────────
+# INIT
+# ─────────────────────────────────────────
+
+print("🤖 NEXTIA TELEGRAM BOT ONLINE")
+print(f"🌐 {WEB2}")
+print("📅 Scheduler activo")
+
+bot.infinity_polling(skip_pending=True)
